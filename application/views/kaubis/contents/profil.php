@@ -3,7 +3,7 @@
 		<div class="section-header">
 			<h1>Kelola Profil</h1>
 			<div class="section-header-breadcrumb">
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Team Leader</a></div>
+				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
 				<div class="breadcrumb-item active">Kelola Profil</div>
 			</div>
 		</div>
@@ -88,24 +88,24 @@
 											<input type="text" class="form-control" value="<?= set_value('username', $profil['username']) ?>" readonly>
 										</div>
 										<div class="form-group">
-											<label>Email</label>
+											<label>Email</label><small class="text-danger"> *</small>
 											<input type="text" name="email" class="form-control <?= form_error('email') ? 'is-invalid' : '' ?>" value="<?= set_value('email', $profil['email']) ?>">
 											<div class="invalid-feedback"><?= form_error('email') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Nama Lengkap</label>
+											<label>Nama Lengkap</label><small class="text-danger"> *</small>
 											<input type="text" name="nama_lengkap" class="form-control <?= form_error('nama_lengkap') ? 'is-invalid' : '' ?>" value="<?= set_value('nama_lengkap', $profil['nama_lengkap']) ?>">
 											<div class="invalid-feedback"><?= form_error('nama_lengkap') ?></div>
 										</div>
 									</div>
 									<div class="col-12 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label>No Handphone</label>
+											<label>No Handphone</label><small class="text-danger"> *</small>
 											<input type="text" name="no_hp" class="form-control <?= form_error('no_hp') ? 'is-invalid' : '' ?>" value="<?= set_value('no_hp', $profil['no_hp']) ?>">
 											<div class="invalid-feedback"><?= form_error('no_hp') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Alamat</label>
+											<label>Alamat</label><small class="text-danger"> *</small>
 											<input type="text" name="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>" value="<?= set_value('alamat', $profil['alamat']) ?>">
 											<div class="invalid-feedback"><?= form_error('alamat') ?></div>
 										</div>

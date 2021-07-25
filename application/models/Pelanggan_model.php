@@ -3,26 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pelanggan_model extends CI_Model
 {
-	public function getPelanggan($status_pelanggan = [])
+	public function getPelanggan($status_pelanggan = null)
 	{
-		$pelanggan = $this->db->get('tbl_pelanggan')->result_array();
-		$status = $this->db->get('tbl_status')->result_array();
-
-		foreach ($pelanggan as $p) {
-			foreach ($status as $s) {
-				$this->db->select('*');
-				$this->db->from('tbl_status_pelanggan a');
-				$this->db->join('tbl_pelanggan b', 'a.pelanggan_id = b.id_pelanggan');
-				$this->db->join('tbl_status c', 'a.status_id = c.id_status');
-				$this->db->join('tbl_paket d', 'b.paket_id = d.id_paket');
-				$this->db->order_by('b.id_pelanggan', 'desc');
-				if ($status_pelanggan != null) {
-					$this->db->where_in('c.id_status', $status_pelanggan);
-				}
-
-				return $this->db->get()->result_array();
-			}
+		$this->db->select('*');
+		$this->db->from('tbl_status_pelanggan a');
+		$this->db->join('tbl_pelanggan b', 'a.pelanggan_id = b.id_pelanggan');
+		$this->db->join('tbl_status c', 'a.status_id = c.id_status');
+		$this->db->join('tbl_paket d', 'b.paket_id = d.id_paket');
+		$this->db->order_by('b.id_pelanggan', 'desc');
+		if ($status_pelanggan != null) {
+			$this->db->where_in('c.id_status', $status_pelanggan);
 		}
+
+		return $this->db->get()->result_array();
 	}
 	public function simpanPelanggan()
 	{

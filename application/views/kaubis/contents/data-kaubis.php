@@ -1,29 +1,26 @@
 <div class="main-content">
 	<section class="section">
 		<div class="section-header">
-			<h1>Kelola Persetujuan</h1>
+			<h1>Kelola Kaubis</h1>
 			<div class="section-header-breadcrumb">
 				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis/data_pelanggan') ?>">Kelola Persetujuan</a></div>
-				<div class="breadcrumb-item active">Persetujuan Pelanggan</div>
+				<div class="breadcrumb-item"><a href="<?= base_url('kaubis/data_kaubis') ?>">Kelola Users</a></div>
+				<div class="breadcrumb-item active">Kaubis</div>
 			</div>
 		</div>
-		<h2 class="section-title">Persetujuan</h2>
-		<p class="section-lead">
-			Halaman ini berisi data pelanggan dalam status (On Progress) yang membutuhkan perubahan status oleh kaubis
-		</p>
+		<h2 class="section-title">Kaubis</h2>
 		<div class="row">
 			<div class="col-12">
 				<div class="card card-statistic-1">
 					<div class="card-icon bg-warning">
-						<i class="fas fa-spinner"></i>
+						<i class="fas fa-user-tie"></i>
 					</div>
 					<div class="card-wrap">
 						<div class="card-header">
-							<h4>Pelanggan (On Progress)</h4>
+							<h4>Total Kaubis</h4>
 						</div>
 						<div class="card-body">
-							<?= $countOnProgress ?>
+							<?= $countKaubis ?>
 						</div>
 					</div>
 				</div>
@@ -34,8 +31,8 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Persetujuan Pelanggan</h4>
-							<a href="<?= base_url('kaubis/input_pelanggan') ?>" class="btn btn-primary ml-auto"><i class="fas fa-plus-circle"></i> Tambah Pelanggan</a>
+							<h4>Data Kaubis</h4>
+							<a href="<?= base_url('kaubis/input_user') ?>" class="btn btn-primary ml-auto"><i class="fas fa-plus-circle"></i> Tambah Kaubis</a>
 						</div>
 						<div class="card-body">
 							<?php if ($this->session->flashdata('success')) : ?>
@@ -54,42 +51,33 @@
 								</div>
 							<?php endif; ?>
 							<div class="table-responsive">
-								<table class="table table-striped" id="pelanggan">
+								<table class="table table-striped" id="table-1">
 									<thead>
 										<tr>
 											<th class="text-center">#</th>
-											<th>ID Pelanggan</th>
-											<th>Nama</th>
+											<th>Username</th>
+											<th>Nama Lengkap</th>
+											<th>Email</th>
 											<th>No Handphone</th>
-											<th>Paket</th>
-											<th class="text-center">Photo</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php $no = 1;
-										foreach ($getPelanggan as $pelanggan) : ?>
+										foreach ($getKaubis as $kaubis) : ?>
 											<tr>
 												<td class="text-center"><?= $no++ ?></td>
 												<td>
-													<?= $pelanggan['kode_pelanggan'] ?>
+													<?= $kaubis['username'] ?>
 													<br>
-													<a href="<?= base_url('kaubis/ubah_pelanggan/' . $pelanggan['id_pelanggan']) ?>">Ubah</a> |
-													<div class="dropdown d-inline">
-														<a href="javascript:void(0);" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-															Ubah Status
-														</a>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-															<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/2/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Done) ?')">Done</a>
-															<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/1/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Kendala) ?')">Kendala</a>
-														</div>
-													</div>
+													<a href="<?= base_url('kaubis/data_kaubis/' . $kaubis['id']) ?>">Detail</a>
+													<?php if ($this->session->userdata('id') != $kaubis['id']) : ?>
+														|
+														<a href="<?= base_url('kaubis/hapus_user/' . $kaubis['id']) ?>" onclick="return confirm('Yakin ingin menghapus pengguna Kaubis ini ?')">Hapus</a>
+													<?php endif ?>
 												</td>
-												<td><?= $pelanggan['nama'] ?></td>
-												<td><?= $pelanggan['no_hp'] ?></td>
-												<td><?= $pelanggan['paket'] ?></td>
-												<td class="text-center">
-													<a href="javascript:void(0);" class="ktp" data-ktp="<?= $pelanggan['photo_ktp'] ?>">KTP</a> | <a href="javascript:void(0);" class="selfie" data-selfie="<?= $pelanggan['photo_selfie'] ?>">Selfie</a>
-												</td>
+												<td><?= $kaubis['nama_lengkap'] ?></td>
+												<td><?= $kaubis['email'] ?></td>
+												<td><?= $kaubis['no_hp'] ?></td>
 											</tr>
 										<?php endforeach ?>
 									</tbody>

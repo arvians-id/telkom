@@ -11,26 +11,19 @@
 			<li><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-tachometer-alt"></i> <span>Beranda Utama</span></a></li>
 			<li <?= activeClassMenu(['']) ?>><a class="nav-link" href="<?= base_url('kaubis') ?>"><i class="fas fa-fire"></i> <span>Beranda Kaubis</span></a></li>
 			<li class="menu-header">Menus</li>
-			<li class="nav-item dropdown <?= activeMenu(['persetujuan', 'data_pelanggan', 'input_pelanggan']) ?>">
+			<li class="nav-item dropdown <?= activeMenu(['persetujuan', 'data_pelanggan']) ?>">
 				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i><span>Kelola Pelanggan</span></a>
 				<ul class="dropdown-menu">
 					<li <?= activeClassMenu(['persetujuan']) ?>><a class="nav-link" href="<?= base_url('kaubis/persetujuan') ?>">Persetujuan Pelanggan</a></li>
 					<li <?= activeClassMenu(['data_pelanggan']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_pelanggan') ?>">Data</a></li>
-					<li <?= activeClassMenu(['input_pelanggan']) ?>><a class="nav-link" href="<?= base_url('kaubis/input_pelanggan') ?>">Input</a></li>
 				</ul>
 			</li>
-			<li class="nav-item dropdown <?= activeMenu(['data_kaubis', 'input_kaubis']) ?>">
-				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-tie"></i> <span>Kelola Kaubis</span></a>
+			<li class="nav-item dropdown <?= activeMenu(['data_kaubis', 'data_tleader', 'input_user']) ?>">
+				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-tie"></i> <span>Kelola Users</span></a>
 				<ul class="dropdown-menu">
-					<li <?= activeClassMenu(['data_kaubis']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_kaubis') ?>">Data</a></li>
-					<li <?= activeClassMenu(['input_kaubis']) ?>><a class="nav-link" href="<?= base_url('kaubis/input_kaubis') ?>">Input</a></li>
-				</ul>
-			</li>
-			<li class="nav-item dropdown <?= activeMenu(['data_tleader', 'input_tleader']) ?>">
-				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Kelola Team Leader</span></a>
-				<ul class="dropdown-menu">
-					<li <?= activeClassMenu(['data_tleader']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_tleader') ?>">Data</a></li>
-					<li <?= activeClassMenu(['input_tleader']) ?>><a class="nav-link" href="<?= base_url('kaubis/input_tleader') ?>">Input</a></li>
+					<li <?= activeClassMenu(['data_kaubis']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_kaubis') ?>">Kaubis</a></li>
+					<li <?= activeClassMenu(['data_tleader']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_tleader') ?>">Team Leader</a></li>
+					<li <?= activeClassMenu(['input_user']) ?>><a class="nav-link" href="<?= base_url('kaubis/input_user') ?>">Input User</a></li>
 				</ul>
 			</li>
 			<li <?= activeClassMenu(['profil']) ?>><a class="nav-link" href="<?= base_url('kaubis/profil') ?>"><i class="fas fa-address-card"></i> <span>Profil</span></a></li>

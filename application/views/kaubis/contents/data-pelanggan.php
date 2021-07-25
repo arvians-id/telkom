@@ -3,12 +3,15 @@
 		<div class="section-header">
 			<h1>Kelola Pelanggan</h1>
 			<div class="section-header-breadcrumb">
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Team Leader</a></div>
+				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
 				<div class="breadcrumb-item"><a href="<?= base_url('kaubis/data_pelanggan') ?>">Kelola Pelanggan</a></div>
 				<div class="breadcrumb-item active">Data</div>
 			</div>
 		</div>
 		<h2 class="section-title">Data Pelanggan</h2>
+		<p class="section-lead">
+			Halaman ini berisi data pelanggan dalam status (Done, Kendala, Cabut & Putus Sementara)
+		</p>
 		<div class="row">
 			<div class="col-lg-3 col-md-6 col-sm-6 col-12">
 				<div class="card card-statistic-1">
@@ -109,7 +112,6 @@
 					<div class="card">
 						<div class="card-header">
 							<h4>Data Pelanggan</h4>
-							<a href="<?= base_url('kaubis/input_pelanggan') ?>" class="btn btn-primary ml-auto"><i class="fas fa-plus-circle"></i> Tambah Pelanggan</a>
 						</div>
 						<div class="card-body">
 							<?php if ($this->session->flashdata('success')) : ?>
@@ -128,18 +130,18 @@
 								</div>
 							<?php endif; ?>
 							<div class="table-responsive">
-								<table class="table table-striped" id="table-1">
+								<table class="table table-striped" id="pelanggan">
 									<thead>
 										<tr>
 											<th class="text-center">#</th>
-											<th>ID Pelanggan - Nama</th>
+											<th>ID Pelanggan</th>
+											<th>Nama</th>
 											<th>Email</th>
 											<th>No Handphone</th>
 											<th>Alamat</th>
 											<th>Paket</th>
 											<th class="text-center">Photo</th>
 											<th class="text-center">Status</th>
-											<th class="text-center">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -147,12 +149,39 @@
 										foreach ($getPelanggan as $pelanggan) : ?>
 											<tr>
 												<td class="text-center"><?= $no++ ?></td>
-												<td>
-													<?= $pelanggan['kode_pelanggan'] . ' - ' . $pelanggan['nama'] ?>
+												<td style="width: 200px;">
+													<?= $pelanggan['kode_pelanggan']  ?>
 													<br>
 													<a href="<?= base_url('kaubis/ubah_pelanggan/' . $pelanggan['id_pelanggan']) ?>">Ubah</a> |
-													<a href="<?= base_url('kaubis/hapus_pelanggan/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin menghapusnya?')">Hapus</a>
+													<a href="<?= base_url('kaubis/hapus_pelanggan/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin menghapus id pelanggan <?= $pelanggan['kode_pelanggan'] ?> ?')">Hapus</a>
+													<?php if (in_array($pelanggan['status_id'], [2, 3, 4])) : ?>
+														|
+														<div class="dropdown d-inline">
+															<a href="javascript:void(0);" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																Ubah Status
+															</a>
+															<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																<?php if ($pelanggan['status_id'] == 2) : ?>
+																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/3/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Cabut) ?')">Cabut</a>
+																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/4/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Putus Sementara) ?')">Putus Sementara</a>
+																<?php elseif (in_array($pelanggan['status_id'], [3, 4])) : ?>
+																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/2/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Done) ?')">Done</a>
+																<?php endif ?>
+															</div>
+														</div>
+													<?php elseif ($pelanggan['status_id'] == 1) : ?>
+														|
+														<div class="dropdown d-inline">
+															<a href="javascript:void(0);" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																Ubah Status
+															</a>
+															<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/2/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Done) ?')">Done</a>
+															</div>
+														</div>
+													<?php endif ?>
 												</td>
+												<td><?= $pelanggan['nama'] ?></td>
 												<td><?= $pelanggan['email'] ?></td>
 												<td><?= $pelanggan['no_hp'] ?></td>
 												<td><?= $pelanggan['alamat'] ?></td>
@@ -162,32 +191,6 @@
 												</td>
 												<td class="text-center">
 													<div class="badge badge-<?= $pelanggan['status_keterangan'] ?>"><?= $pelanggan['status'] ?></div>
-												</td>
-												<td class="text-center">
-													<?php if (in_array($pelanggan['status_id'], [2, 3, 4])) : ?>
-														<div class="dropdown d-inline">
-															<button class="btn btn-primary p-0 px-2 rounded-pill shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																Ubah Status
-															</button>
-															<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-																<?php if ($pelanggan['status_id'] == 2) : ?>
-																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/3/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Cabut) ?')">Cabut</a>
-																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/4/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Putus Sementara) ?')">Putus Sementara</a>
-																<?php elseif (in_array($pelanggan['status_id'], [3, 4])) : ?>
-																	<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/4/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Done) ?')">Done</a>
-																<?php endif ?>
-															</div>
-														</div>
-													<?php elseif ($pelanggan['status_id'] == 1) : ?>
-														<div class="dropdown d-inline">
-															<button class="btn btn-primary p-0 px-2 rounded-pill shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																Ubah Status
-															</button>
-															<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-																<a class="dropdown-item" href="<?= base_url('kaubis/ubah_status/4/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin merubah status pelanggan ini menjadi (Done) ?')">Done</a>
-															</div>
-														</div>
-													<?php endif ?>
 												</td>
 											</tr>
 										<?php endforeach ?>
