@@ -13,7 +13,7 @@ class TLeader extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'judul' => 'Team Leader',
+			'judul' => 'Team Leader | Beranda',
 			'content' => 'tleader/contents/index',
 			'countPelanggan' => $this->db->get('tbl_pelanggan')->num_rows(),
 			'countOnProgress' => $this->db->get_where('tbl_status_pelanggan', ['status_id' => 0])->num_rows(),
@@ -27,7 +27,7 @@ class TLeader extends CI_Controller
 	public function data_pelanggan()
 	{
 		$data = [
-			'judul' => 'Team Leader',
+			'judul' => 'Team Leader | Data Pelanggan',
 			'content' => 'tleader/contents/data-pelanggan',
 			'getPelanggan' => $this->pelanggan_m->getPelanggan(),
 			'countPelanggan' => $this->db->get('tbl_pelanggan')->num_rows(),
@@ -50,13 +50,35 @@ class TLeader extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'judul' => 'Input Data Pelanggan',
+				'judul' => 'Team Leader | Input Data Pelanggan',
 				'content' => 'tleader/contents/input-pelanggan',
 				'getPaket' => $this->db->get('tbl_paket')->result_array(),
 			];
 			$this->load->view('tleader/layouts/app-input', $data);
 		} else {
 			$this->pelanggan_m->simpanPelanggan();
+			$this->session->set_flashdata('success', 'Data berhasil disimpan.');
+			redirect('tleader/data_pelanggan');
+		}
+	}
+	public function ubah_pelanggan($id_pelanggan)
+	{
+		$this->form_validation->set_rules('nama', 'Nama', 'required|max_length[50]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[50]');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required|max_length[100]');
+		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required|numeric|min_length[10]|max_length[15]');
+		$this->form_validation->set_rules('paket', 'Paket', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data = [
+				'judul' => 'Team Leader | Ubah Data Pelanggan',
+				'content' => 'tleader/contents/ubah-pelanggan',
+				'getPaket' => $this->db->get('tbl_paket')->result_array(),
+				'pelanggan' => $this->pelanggan_m->getPelangganById($id_pelanggan)
+			];
+			$this->load->view('tleader/layouts/app-input', $data);
+		} else {
+			$this->pelanggan_m->ubahPelanggan($id_pelanggan);
 			$this->session->set_flashdata('success', 'Data berhasil disimpan.');
 			redirect('tleader/data_pelanggan');
 		}
@@ -78,7 +100,7 @@ class TLeader extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'judul' => 'Profil Team Leader',
+				'judul' => 'Team Leader | Profil Team Leader',
 				'content' => 'tleader/contents/profil',
 				'profil' => $this->db->get_where('tbl_users', ['id' => $this->session->userdata('id')])->row_array()
 			];
@@ -91,6 +113,15 @@ class TLeader extends CI_Controller
 	}
 	public function hapus_pelanggan($id_pelanggan)
 	{
+		$pelanggan = $this->db->get_where('tbl_pelanggan', ['id_pelanggan' => $id_pelanggan])->row_array();
+		$path_ktp = FCPATH . 'assets/images/' . $pelanggan['photo_ktp'];
+		$path_selfie = FCPATH . 'assets/images/' . $pelanggan['photo_selfie'];
+		if (file_exists($path_ktp)) {
+			unlink($path_ktp);
+		}
+		if (file_exists($path_selfie)) {
+			unlink($path_selfie);
+		}
 		$this->db->delete('tbl_pelanggan', ['id_pelanggan' => $id_pelanggan]);
 		$this->session->set_flashdata('success', 'Data berhasil dihapus.');
 		redirect('tleader/data_pelanggan');

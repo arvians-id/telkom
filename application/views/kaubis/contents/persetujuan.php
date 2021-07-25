@@ -4,7 +4,7 @@
 			<h1>Kelola Persetujuan</h1>
 			<div class="section-header-breadcrumb">
 				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis/data_pelanggan') ?>">Kelola Persetujuan</a></div>
+				<div class="breadcrumb-item"><a href="<?= base_url('kaubis/data_persetujuan') ?>">Kelola Pelanggan</a></div>
 				<div class="breadcrumb-item active">Persetujuan Pelanggan</div>
 			</div>
 		</div>
@@ -35,7 +35,6 @@
 					<div class="card">
 						<div class="card-header">
 							<h4>Persetujuan Pelanggan</h4>
-							<a href="<?= base_url('kaubis/input_pelanggan') ?>" class="btn btn-primary ml-auto"><i class="fas fa-plus-circle"></i> Tambah Pelanggan</a>
 						</div>
 						<div class="card-body">
 							<?php if ($this->session->flashdata('success')) : ?>
@@ -107,7 +106,7 @@
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -116,10 +115,6 @@
 				<div class="text-center">
 					<img src="" id="image" class="img-fluid">
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>

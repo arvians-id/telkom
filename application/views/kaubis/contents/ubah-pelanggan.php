@@ -39,14 +39,11 @@
 									<label>ID/Kode Pelanggan</label><small class="text-danger"> *</small>
 									<div class="input-group">
 										<div class="input-group-prepend">
-											<a href="javascript:void(0);" style="text-decoration:none" class="shadow-sm" id="generate-id">
-												<div class="input-group-text">
-													Generate ID
-												</div>
-											</a>
+											<div class="input-group-text">
+												ID
+											</div>
 										</div>
-										<input type="text" name="kode_pelanggan" class="form-control <?= form_error('kode_pelanggan') ? 'is-invalid' : '' ?>" value="<?= set_value('kode_pelanggan') ?>" readonly>
-										<div class="invalid-feedback"><?= form_error('kode_pelanggan') ?></div>
+										<input type="text" class="form-control" value="<?= set_value('kode_pelanggan', $pelanggan['kode_pelanggan']) ?>" readonly>
 									</div>
 
 								</div>
@@ -58,7 +55,7 @@
 												<i class="fas fa-signature"></i>
 											</div>
 										</div>
-										<input type="text" name="nama" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" value="<?= set_value('nama') ?>">
+										<input type="text" name="nama" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" value="<?= set_value('nama', $pelanggan['nama']) ?>">
 										<div class="invalid-feedback"><?= form_error('nama') ?></div>
 									</div>
 								</div>
@@ -70,7 +67,7 @@
 												<i class="fas fa-envelope"></i>
 											</div>
 										</div>
-										<input type="text" name="email" class="form-control <?= form_error('email') ? 'is-invalid' : '' ?>" value="<?= set_value('email') ?>">
+										<input type="text" name="email" class="form-control <?= form_error('email') ? 'is-invalid' : '' ?>" value="<?= set_value('email', $pelanggan['email']) ?>">
 										<div class="invalid-feedback"><?= form_error('email') ?></div>
 									</div>
 								</div>
@@ -82,7 +79,7 @@
 												<i class="fas fa-map-marked-alt"></i>
 											</div>
 										</div>
-										<input type="text" name="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>" value="<?= set_value('alamat') ?>">
+										<input type="text" name="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>" value="<?= set_value('alamat', $pelanggan['alamat']) ?>">
 										<div class="invalid-feedback"><?= form_error('alamat') ?></div>
 									</div>
 								</div>
@@ -94,7 +91,7 @@
 												<i class="fas fa-phone"></i>
 											</div>
 										</div>
-										<input type="text" name="no_hp" class="form-control <?= form_error('no_hp') ? 'is-invalid' : '' ?>" value="<?= set_value('no_hp') ?>">
+										<input type="text" name="no_hp" class="form-control <?= form_error('no_hp') ? 'is-invalid' : '' ?>" value="<?= set_value('no_hp', $pelanggan['no_hp']) ?>">
 										<div class="invalid-feedback"><?= form_error('no_hp') ?></div>
 									</div>
 								</div>
@@ -103,7 +100,7 @@
 									<select name="paket" class="form-control <?= form_error('paket') ? 'is-invalid' : '' ?>">
 										<option value="" selected disabled>Pilih Paket ...</option>
 										<?php foreach ($getPaket as $paket) : ?>
-											<option value="<?= $paket['id_paket'] ?>" <?= set_value('paket') == $paket['id_paket'] ? 'selected' : '' ?>><?= $paket['paket'] ?></option>
+											<option value="<?= $paket['id_paket'] ?>" <?= set_value('paket', $pelanggan['id_paket']) == $paket['id_paket'] ? 'selected' : '' ?>><?= $paket['paket'] ?></option>
 										<?php endforeach ?>
 									</select>
 									<div class="invalid-feedback"><?= form_error('paket') ?></div>
@@ -121,7 +118,7 @@
 										<input type="file" name="photo_ktp" class="form-control <?= form_error('photo_ktp') ? 'is-invalid' : '' ?>" value="<?= set_value('photo_ktp') ?>">
 										<div class="invalid-feedback"><?= form_error('photo_ktp') ?></div>
 									</div>
-									<img src="<?= base_url('assets/images/404.png') ?>" id="preview-img-ktp" class="img-fluid img-thumbnail mt-2" width="150">
+									<img src="<?= base_url('assets/images/' . $pelanggan['photo_ktp']) ?>" id="preview-img-ktp" class="img-fluid img-thumbnail mt-2" width="150">
 								</div>
 								<div class="form-group">
 									<label>Photo Selfie</label><small class="text-danger"> *</small>
@@ -134,7 +131,7 @@
 										<input type="file" name="photo_selfie" class="form-control <?= form_error('photo_selfie') ? 'is-invalid' : '' ?>" value="<?= set_value('photo_selfie') ?>">
 										<div class="invalid-feedback"><?= form_error('photo_selfie') ?></div>
 									</div>
-									<img src="<?= base_url('assets/images/404.png') ?>" id="preview-img-selfie" class="img-fluid img-thumbnail mt-2" width="150">
+									<img src="<?= base_url('assets/images/' . $pelanggan['photo_selfie']) ?>" id="preview-img-selfie" class="img-fluid img-thumbnail mt-2" width="150">
 								</div>
 							</div>
 						</div>

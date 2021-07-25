@@ -11,11 +11,11 @@
 			<li><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-tachometer-alt"></i> <span>Beranda Utama</span></a></li>
 			<li <?= activeClassMenu(['']) ?>><a class="nav-link" href="<?= base_url('kaubis') ?>"><i class="fas fa-fire"></i> <span>Beranda Kaubis</span></a></li>
 			<li class="menu-header">Menus</li>
-			<li class="nav-item dropdown <?= activeMenu(['persetujuan', 'data_pelanggan']) ?>">
+			<li class="nav-item dropdown <?= activeMenu(['persetujuan', 'data_pelanggan', 'ubah_pelanggan']) ?>">
 				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i><span>Kelola Pelanggan</span></a>
 				<ul class="dropdown-menu">
 					<li <?= activeClassMenu(['persetujuan']) ?>><a class="nav-link" href="<?= base_url('kaubis/persetujuan') ?>">Persetujuan Pelanggan</a></li>
-					<li <?= activeClassMenu(['data_pelanggan']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_pelanggan') ?>">Data</a></li>
+					<li <?= activeClassMenu(['data_pelanggan', 'ubah_pelanggan']) ?>><a class="nav-link" href="<?= base_url('kaubis/data_pelanggan') ?>">Data</a></li>
 				</ul>
 			</li>
 			<li class="nav-item dropdown <?= activeMenu(['data_kaubis', 'data_tleader', 'input_user']) ?>">

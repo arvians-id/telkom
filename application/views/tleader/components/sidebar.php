@@ -11,10 +11,10 @@
 			<li><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-tachometer-alt"></i> <span>Beranda Utama</span></a></li>
 			<li <?= activeClassMenu(['']) ?>><a class="nav-link" href="<?= base_url('tleader') ?>"><i class="fas fa-fire"></i> <span>Beranda Team Leader</span></a></li>
 			<li class="menu-header">Menus</li>
-			<li class="nav-item dropdown <?= activeMenu(['data_pelanggan', 'input_pelanggan']) ?>">
+			<li class="nav-item dropdown <?= activeMenu(['data_pelanggan', 'input_pelanggan', 'ubah_pelanggan']) ?>">
 				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>Kelola Pelanggan</span></a>
 				<ul class="dropdown-menu">
-					<li <?= activeClassMenu(['data_pelanggan']) ?>><a class="nav-link" href="<?= base_url('tleader/data_pelanggan') ?>">Data</a></li>
+					<li <?= activeClassMenu(['data_pelanggan', 'ubah_pelanggan']) ?>><a class="nav-link" href="<?= base_url('tleader/data_pelanggan') ?>">Data</a></li>
 					<li <?= activeClassMenu(['input_pelanggan']) ?>><a class="nav-link" href="<?= base_url('tleader/input_pelanggan') ?>">Input</a></li>
 				</ul>
 			</li>

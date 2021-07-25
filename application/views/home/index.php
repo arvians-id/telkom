@@ -22,9 +22,9 @@
 		<div class="main-wrapper container">
 			<div class="navbar-bg"></div>
 			<nav class="navbar navbar-expand-lg main-navbar">
-				<a href="index.html" class="navbar-brand sidebar-gone-hide">Telkom</a>
+				<a href="index.html" class="navbar-brand sidebar-gone-hide">Telkom Indonesia</a>
 				<div class="navbar-nav">
-					<a href="<?= base_url() ?>" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-igloo"></i></a>
+					<a href="<?= base_url() ?>" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
 				</div>
 				<?php if ($this->session->userdata('username')) : ?>
 					<ul class="navbar-nav navbar-right ml-auto">
@@ -67,10 +67,8 @@
 			<div class="main-content">
 				<section class="section">
 					<div class="section-header">
-						<h1>Selamat Datang</h1>
-						<div class="section-header-breadcrumb">
-							<div class="breadcrumb-item active"><a href="<?= base_url() ?>">Home</a></div>
-						</div>
+						<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="rounded-circle">
+						<h1>Telkom Indonesia</h1>
 					</div>
 
 					<div class="section-body">

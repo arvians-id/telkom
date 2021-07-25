@@ -100,18 +100,45 @@
 		<div class="section-body">
 			<div class="card">
 				<div class="card-header">
-					<h4>Example Card</h4>
+					<h4>Sejarah Telkom Indonesia</h4>
 				</div>
 				<div class="card-body">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-				<div class="card-footer bg-whitesmoke">
-					This is card footer
+					<div class="text-center">
+						<img src="<?= base_url('assets/layout/sejarah-telkom.jpg') ?>" class="img-fluid" width="400" alt="">
+					</div>
+					<p>
+						<b>TENTANG TELKOMGROUP</b>
+						<br></br>
+						PT Telkom Indonesia (Persero) Tbk (Telkom) adalah Badan Usaha Milik Negara (BUMN) yang bergerak di bidang jasa layanan teknologi informasi dan komunikasi (TIK) dan jaringan telekomunikasi di Indonesia. Pemegang saham mayoritas Telkom adalah Pemerintah Republik Indonesia sebesar 52.09%, sedangkan 47.91% sisanya dikuasai oleh publik. Saham Telkom diperdagangkan di Bursa Efek Indonesia (BEI) dengan kode “TLKM” dan New York Stock Exchange (NYSE) dengan kode “TLK”.
+						<br><br>
+						Dalam upaya bertransformasi menjadi digital telecommunication company, TelkomGroup mengimplementasikan strategi bisnis dan operasional perusahaan yang berorientasi kepada pelanggan (customer-oriented). Transformasi tersebut akan membuat organisasi TelkomGroup menjadi lebih lean (ramping) dan agile (lincah) dalam beradaptasi dengan perubahan industri telekomunikasi yang berlangsung sangat cepat. Organisasi yang baru juga diharapkan dapat meningkatkan efisiensi dan efektivitas dalam menciptakan customer experience yang berkualitas.
+						<br><br>
+						Kegiatan usaha TelkomGroup bertumbuh dan berubah seiring dengan perkembangan teknologi, informasi dan digitalisasi, namun masih dalam koridor industri telekomunikasi dan informasi. Hal ini terlihat dari lini bisnis yang terus berkembang melengkapi legacy yang sudah ada sebelumnya.
+						<br><br>
+						Telkom mulai saat ini membagi bisnisnya menjadi 3 Digital Business Domain:
+						<br><br>
+						Digital Connectivity: Fiber to the x (FTTx), 5G, Software Defined Networking (SDN)/ Network Function Virtualization (NFV)/ Satellite
+						Digital Platform: Data Center, Cloud, Internet of Things (IoT), Big Data/ Artificial Intelligence (AI), Cybersecurity
+						Digital Services: Enterprise, Consumer
+						<br><br>
+						<b>PURPOSE, VISI DAN MISI</b>
+						<br>
+						Untuk menjawab tantangan industri digital, mendukung digitisasi nasional dan untuk menginternalisasi agenda transformasi, maka Telkom telah menajamkan kembali Purpose, Visi, dan Misi nya.
+						<br>
+						<b>PURPOSE</b>
+						<br>
+						Mewujudkan bangsa yang lebih sejahtera dan berdaya saing serta memberikan nilai tambah yang terbaik bagi para pemangku kepentingan.
+						<br>
+						<b>VISI</b>
+						<br>
+						Menjadi digital telco pilihan utama untuk memajukan masyarakat
+						<br>
+						<b>MISI</b>
+						<br>
+						Mempercepat pembangunan Infrastruktur dan platform digital cerdas yang berkelanjutan, ekonomis, dan dapat diakses oleh seluruh masyarakat.
+						Mengembangkan talenta digital unggulan yang membantu mendorong kemampuan digital dan tingkat adopsi digital bangsa.
+						Mengorkestrasi ekosistem digital untuk memberikan pengalaman digital pelanggan terbaik
+					</p>
 				</div>
 			</div>
 		</div>

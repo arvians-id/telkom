@@ -1,10 +1,10 @@
 <div class="main-content">
 	<section class="section">
 		<div class="section-header">
-			<h1>Kelola Profil</h1>
+			<h1>Detail Profil</h1>
 			<div class="section-header-breadcrumb">
 				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
-				<div class="breadcrumb-item active">Kelola Profil</div>
+				<div class="breadcrumb-item active">Detail Profil</div>
 			</div>
 		</div>
 		<div class="section-body">

@@ -30,7 +30,7 @@
 									<div class="slash"></div> <?= ucfirst($profil['role']) ?>
 								</div>
 							</div>
-							<table class="table">
+							<table class="table table-responsive">
 								<thead>
 									<tr>
 										<th>Username</th>
@@ -55,6 +55,7 @@
 								</thead>
 							</table>
 							<h4>Bio</h4>
+							<hr>
 							<?= $profil['bio'] ?>
 						</div>
 					</div>
@@ -110,16 +111,18 @@
 											<div class="invalid-feedback"><?= form_error('alamat') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Photo</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
-											<input type="file" name="photo" class="form-control">
+											<label>Password</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
+											<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
+											<div class="invalid-feedback"><?= form_error('password') ?></div>
+											<small type="button" id="showPassword" class="d-block" style="cursor: pointer">Lihat Password</small>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-12">
-										<label>Password</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
-										<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
-										<div class="invalid-feedback"><?= form_error('password') ?></div>
+										<label>Photo</label>
+										<input type="file" name="photo" class="form-control">
+										<img src="<?= base_url('assets/images/' . $profil['photo']) ?>" id="preview-img" class="img-fluid img-thumbnail mt-2" width="150">
 									</div>
 									<div class="form-group col-12">
 										<label>Bio</label>
@@ -129,7 +132,7 @@
 								</div>
 							</div>
 							<div class="card-footer text-right">
-								<button class="btn btn-primary">Save Changes</button>
+								<button class="btn btn-primary">Simpan perubahan</button>
 							</div>
 						</form>
 					</div>
@@ -138,3 +141,30 @@
 		</div>
 	</section>
 </div>
+
+<script>
+	const inputPhoto = document.querySelector('[name="photo"]');
+	inputPhoto.addEventListener('change', function(event) {
+		let file = event.target.files[0];
+		let src = URL.createObjectURL(file);
+		document.querySelector('#preview-img').setAttribute('src', src);
+	})
+	const inputPassword = document.querySelector('[name="password"]');
+	// Show Hide Password
+	const resetPassword = () => {
+		inputPassword.setAttribute('type', 'password');
+		document.querySelector('#showPassword').innerHTML = 'Lihat Password';
+	}
+	const showPassword = (show, idPassword) => {
+		if (idPassword.getAttribute('type') == 'password') {
+			idPassword.setAttribute('type', 'text');
+			show.innerHTML = 'Tutup Password';
+		} else {
+			idPassword.setAttribute('type', 'password');
+			show.innerHTML = 'Lihat Password';
+		}
+	}
+	document.querySelector('#showPassword').addEventListener('click', function() {
+		showPassword(this, inputPassword);
+	})
+</script>

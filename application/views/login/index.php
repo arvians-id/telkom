@@ -24,8 +24,8 @@
 			<div class="d-flex flex-wrap align-items-stretch">
 				<div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
 					<div class="p-4 m-3">
-						<img src="<?= base_url('assets/template/stisla') ?>/assets/img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
-						<h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Telkom</span></h4>
+						<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
+						<h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Telkom Indonesia</span></h4>
 						<p class="text-muted">Before you get started, you must login.</p>
 						<?php if ($this->session->flashdata('success')) : ?>
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -55,18 +55,16 @@
 								</div>
 								<input type="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>" name="password">
 								<div class="invalid-feedback"><?= form_error('password') ?></div>
+								<small type="button" id="showPassword" class="d-block" style="cursor: pointer">Lihat Password</small>
 							</div>
 
 							<div class="form-group text-right">
+								<a href="<?= base_url() ?>" class="d-inline mr-2"><i class="fas fa-arrow-left"></i> Kembali ke home </a>
 								<button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
 									Login
 								</button>
 							</div>
 						</form>
-
-						<div class="text-center mt-5 text-small">
-							Copyright &copy; <?= date('Y') ?> Made with 💙 by Stisla
-						</div>
 					</div>
 				</div>
 				<div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('assets/template/stisla') ?>/assets/img/unsplash/login-bg.jpg">
@@ -99,6 +97,27 @@
 	<script src="<?= base_url('assets/template/stisla') ?>/assets/js/custom.js"></script>
 
 	<!-- Page Specific JS File -->
+	<script>
+		const inputPassword = document.querySelector('[name="password"]');
+		// Show Hide Password
+		const resetPassword = () => {
+			inputPassword.setAttribute('type', 'password');
+			document.querySelector('#showPassword').innerHTML = 'Lihat Password';
+		}
+		const showPassword = (show, idPassword) => {
+			if (idPassword.getAttribute('type') == 'password') {
+				idPassword.setAttribute('type', 'text');
+				show.innerHTML = 'Tutup Password';
+			} else {
+				idPassword.setAttribute('type', 'password');
+				show.innerHTML = 'Lihat Password';
+			}
+		}
+		document.querySelector('#showPassword').addEventListener('click', function() {
+			showPassword(this, inputPassword);
+		})
+	</script>
+
 </body>
 
 </html>

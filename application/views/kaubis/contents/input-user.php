@@ -11,7 +11,9 @@
 
 		<div class="section-body">
 			<h2 class="section-title">Input Users</h2>
-
+			<p class="section-lead">
+				Pada halaman ini anda dapat melakukan penambahan/pembuatan akun Kaubis dan Team Leader
+			</p>
 			<div class="card">
 				<div class="card-header">
 					<h4>Input Users</h4>
@@ -58,6 +60,7 @@
 										<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>" value="<?= set_value('password') ?>">
 										<div class="invalid-feedback"><?= form_error('password') ?></div>
 									</div>
+									<small type="button" id="showPassword" class="d-block" style="cursor: pointer">Lihat Password</small>
 								</div>
 								<div class="form-group">
 									<label>Nama Lengkap</label><small class="text-danger"> *</small>
@@ -95,8 +98,6 @@
 										<div class="invalid-feedback"><?= form_error('alamat') ?></div>
 									</div>
 								</div>
-							</div>
-							<div class="col-12 col-md-6 col-lg-6">
 								<div class="form-group">
 									<label>No Handphone</label><small class="text-danger"> *</small>
 									<div class="input-group">
@@ -109,6 +110,8 @@
 										<div class="invalid-feedback"><?= form_error('no_hp') ?></div>
 									</div>
 								</div>
+							</div>
+							<div class="col-12 col-md-6 col-lg-6">
 								<div class="form-group">
 									<label>Role</label><small class="text-danger"> *</small>
 									<select name="role" class="form-control <?= form_error('role') ? 'is-invalid' : '' ?>">
@@ -121,6 +124,7 @@
 								<div class="form-group">
 									<label>Photo</label>
 									<input type="file" name="photo" class="form-control">
+									<img src="<?= base_url('assets/images/default.png') ?>" id="preview-img" class="img-fluid img-thumbnail mt-2" width="150">
 								</div>
 								<div class="form-group">
 									<label>Bio</label>
@@ -135,3 +139,30 @@
 		</div>
 	</section>
 </div>
+
+<script>
+	const inputPhoto = document.querySelector('[name="photo"]');
+	inputPhoto.addEventListener('change', function(event) {
+		let file = event.target.files[0];
+		let src = URL.createObjectURL(file);
+		document.querySelector('#preview-img').setAttribute('src', src);
+	})
+	const inputPassword = document.querySelector('[name="password"]');
+	// Show Hide Password
+	const resetPassword = () => {
+		inputPassword.setAttribute('type', 'password');
+		document.querySelector('#showPassword').innerHTML = 'Lihat Password';
+	}
+	const showPassword = (show, idPassword) => {
+		if (idPassword.getAttribute('type') == 'password') {
+			idPassword.setAttribute('type', 'text');
+			show.innerHTML = 'Tutup Password';
+		} else {
+			idPassword.setAttribute('type', 'password');
+			show.innerHTML = 'Lihat Password';
+		}
+	}
+	document.querySelector('#showPassword').addEventListener('click', function() {
+		showPassword(this, inputPassword);
+	})
+</script>

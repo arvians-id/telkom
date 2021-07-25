@@ -13,7 +13,7 @@ class Kaubis extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'judul' => 'Kaubis',
+			'judul' => 'Kaubis | Beranda',
 			'content' => 'kaubis/contents/index',
 			'countPelanggan' => $this->db->get('tbl_pelanggan')->num_rows(),
 			'countOnProgress' => $this->db->get_where('tbl_status_pelanggan', ['status_id' => 0])->num_rows(),
@@ -27,7 +27,7 @@ class Kaubis extends CI_Controller
 	public function persetujuan()
 	{
 		$data = [
-			'judul' => 'Kaubis',
+			'judul' => 'Kaubis | Data Persetujuan',
 			'content' => 'kaubis/contents/persetujuan',
 			'getPelanggan' => $this->pelanggan_m->getPelanggan([0]),
 			'countPelanggan' => $this->db->get('tbl_pelanggan')->num_rows(),
@@ -45,7 +45,7 @@ class Kaubis extends CI_Controller
 	public function data_pelanggan()
 	{
 		$data = [
-			'judul' => 'Kaubis',
+			'judul' => 'Kaubis | Data Pelanggan',
 			'content' => 'kaubis/contents/data-pelanggan',
 			'getPelanggan' => $this->pelanggan_m->getPelanggan([1, 2, 3, 4]),
 			'countPelanggan' => $this->db->get('tbl_pelanggan')->num_rows(),
@@ -56,6 +56,28 @@ class Kaubis extends CI_Controller
 			'countPutus' => $this->db->get_where('tbl_status_pelanggan', ['status_id' => 4])->num_rows(),
 		];
 		$this->load->view('kaubis/layouts/app-data', $data);
+	}
+	public function ubah_pelanggan($id_pelanggan)
+	{
+		$this->form_validation->set_rules('nama', 'Nama', 'required|max_length[50]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[50]');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required|max_length[100]');
+		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required|numeric|min_length[10]|max_length[15]');
+		$this->form_validation->set_rules('paket', 'Paket', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data = [
+				'judul' => 'Team Leader | Ubah Data Pelanggan',
+				'content' => 'kaubis/contents/ubah-pelanggan',
+				'getPaket' => $this->db->get('tbl_paket')->result_array(),
+				'pelanggan' => $this->pelanggan_m->getPelangganById($id_pelanggan)
+			];
+			$this->load->view('kaubis/layouts/app-input', $data);
+		} else {
+			$this->pelanggan_m->ubahPelanggan($id_pelanggan);
+			$this->session->set_flashdata('success', 'Data berhasil disimpan.');
+			redirect('kaubis/data_pelanggan');
+		}
 	}
 	public function generate()
 	{
@@ -73,7 +95,7 @@ class Kaubis extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'judul' => 'Profil Kaubis',
+				'judul' => 'Kaubis | Profil Kaubis',
 				'content' => 'kaubis/contents/profil',
 				'profil' => $this->db->get_where('tbl_users', ['id' => $this->session->userdata('id')])->row_array()
 			];
@@ -106,7 +128,7 @@ class Kaubis extends CI_Controller
 			return true;
 		}
 		$data = [
-			'judul' => 'Kaubis',
+			'judul' => 'Kaubis | Data Kaubis',
 			'content' => 'kaubis/contents/data-kaubis',
 			'getKaubis' => $this->db->get_where('tbl_users', ['role' => 'kaubis'])->result_array(),
 			'countKaubis' => $this->db->get_where('tbl_users', ['role' => 'kaubis'])->num_rows(),
@@ -120,7 +142,7 @@ class Kaubis extends CI_Controller
 			return true;
 		}
 		$data = [
-			'judul' => 'Team Leader',
+			'judul' => 'Kaubis | Data Team Leader',
 			'content' => 'kaubis/contents/data-tleader',
 			'getTleader' => $this->db->get_where('tbl_users', ['role' => 'tleader'])->result_array(),
 			'countTleader' => $this->db->get_where('tbl_users', ['role' => 'tleader'])->num_rows(),
@@ -130,7 +152,7 @@ class Kaubis extends CI_Controller
 	private function lihat_user($id_user)
 	{
 		$data = [
-			'judul' => 'Detail Profil',
+			'judul' => 'Kaubis | Detail Profil',
 			'content' => 'kaubis/contents/detail-user',
 			'user' => $this->db->get_where('tbl_users', ['id' => $id_user])->row_array()
 		];
@@ -159,7 +181,7 @@ class Kaubis extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'judul' => 'Input Data User',
+				'judul' => 'Kaubis | Input Data User',
 				'content' => 'kaubis/contents/input-user',
 				'getPaket' => $this->db->get('tbl_paket')->result_array(),
 			];

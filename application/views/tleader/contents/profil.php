@@ -3,7 +3,7 @@
 		<div class="section-header">
 			<h1>Kelola Profil</h1>
 			<div class="section-header-breadcrumb">
-				<div class="breadcrumb-item"><a href="<?= base_url('tleader') ?>">Team Leader</a></div>
+				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
 				<div class="breadcrumb-item active">Kelola Profil</div>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 									<div class="slash"></div> <?= ucfirst($profil['role']) ?>
 								</div>
 							</div>
-							<table class="table">
+							<table class="table table-responsive">
 								<thead>
 									<tr>
 										<th>Username</th>
@@ -55,6 +55,7 @@
 								</thead>
 							</table>
 							<h4>Bio</h4>
+							<hr>
 							<?= $profil['bio'] ?>
 						</div>
 					</div>
@@ -88,38 +89,40 @@
 											<input type="text" class="form-control" value="<?= set_value('username', $profil['username']) ?>" readonly>
 										</div>
 										<div class="form-group">
-											<label>Email</label>
+											<label>Email</label><small class="text-danger"> *</small>
 											<input type="text" name="email" class="form-control <?= form_error('email') ? 'is-invalid' : '' ?>" value="<?= set_value('email', $profil['email']) ?>">
 											<div class="invalid-feedback"><?= form_error('email') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Nama Lengkap</label>
+											<label>Nama Lengkap</label><small class="text-danger"> *</small>
 											<input type="text" name="nama_lengkap" class="form-control <?= form_error('nama_lengkap') ? 'is-invalid' : '' ?>" value="<?= set_value('nama_lengkap', $profil['nama_lengkap']) ?>">
 											<div class="invalid-feedback"><?= form_error('nama_lengkap') ?></div>
 										</div>
 									</div>
 									<div class="col-12 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label>No Handphone</label>
+											<label>No Handphone</label><small class="text-danger"> *</small>
 											<input type="text" name="no_hp" class="form-control <?= form_error('no_hp') ? 'is-invalid' : '' ?>" value="<?= set_value('no_hp', $profil['no_hp']) ?>">
 											<div class="invalid-feedback"><?= form_error('no_hp') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Alamat</label>
+											<label>Alamat</label><small class="text-danger"> *</small>
 											<input type="text" name="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>" value="<?= set_value('alamat', $profil['alamat']) ?>">
 											<div class="invalid-feedback"><?= form_error('alamat') ?></div>
 										</div>
 										<div class="form-group">
-											<label>Photo</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
-											<input type="file" name="photo" class="form-control">
+											<label>Password</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
+											<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
+											<div class="invalid-feedback"><?= form_error('password') ?></div>
+											<small type="button" id="showPassword" class="d-block" style="cursor: pointer">Lihat Password</small>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-12">
-										<label>Password</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
-										<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
-										<div class="invalid-feedback"><?= form_error('password') ?></div>
+										<label>Photo</label>
+										<input type="file" name="photo" class="form-control">
+										<img src="<?= base_url('assets/images/' . $profil['photo']) ?>" id="preview-img" class="img-fluid img-thumbnail mt-2" width="150">
 									</div>
 									<div class="form-group col-12">
 										<label>Bio</label>
@@ -129,7 +132,7 @@
 								</div>
 							</div>
 							<div class="card-footer text-right">
-								<button class="btn btn-primary">Save Changes</button>
+								<button class="btn btn-primary">Simpan perubahan</button>
 							</div>
 						</form>
 					</div>
@@ -138,3 +141,30 @@
 		</div>
 	</section>
 </div>
+
+<script>
+	const inputPhoto = document.querySelector('[name="photo"]');
+	inputPhoto.addEventListener('change', function(event) {
+		let file = event.target.files[0];
+		let src = URL.createObjectURL(file);
+		document.querySelector('#preview-img').setAttribute('src', src);
+	})
+	const inputPassword = document.querySelector('[name="password"]');
+	// Show Hide Password
+	const resetPassword = () => {
+		inputPassword.setAttribute('type', 'password');
+		document.querySelector('#showPassword').innerHTML = 'Lihat Password';
+	}
+	const showPassword = (show, idPassword) => {
+		if (idPassword.getAttribute('type') == 'password') {
+			idPassword.setAttribute('type', 'text');
+			show.innerHTML = 'Tutup Password';
+		} else {
+			idPassword.setAttribute('type', 'password');
+			show.innerHTML = 'Lihat Password';
+		}
+	}
+	document.querySelector('#showPassword').addEventListener('click', function() {
+		showPassword(this, inputPassword);
+	})
+</script>

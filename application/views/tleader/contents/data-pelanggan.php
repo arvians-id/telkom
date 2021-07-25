@@ -149,8 +149,11 @@
 												<td>
 													<?= $pelanggan['kode_pelanggan'] . ' - ' . $pelanggan['nama'] ?>
 													<br>
-													<a href="<?= base_url('tleader/ubah_pelanggan/' . $pelanggan['id_pelanggan']) ?>">Ubah</a> |
-													<a href="<?= base_url('tleader/hapus_pelanggan/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin menghapusnya?')">Hapus</a>
+													<a href="<?= base_url('tleader/ubah_pelanggan/' . $pelanggan['id_pelanggan']) ?>">Ubah</a>
+													<?php if ($pelanggan['status_id'] == 0) : ?>
+														|
+														<a href="<?= base_url('tleader/hapus_pelanggan/' . $pelanggan['id_pelanggan']) ?>" onclick="return confirm('Yakin ingin menghapusnya?')">Hapus</a>
+													<?php endif ?>
 												</td>
 												<td><?= $pelanggan['email'] ?></td>
 												<td><?= $pelanggan['no_hp'] ?></td>
@@ -179,7 +182,7 @@
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -188,10 +191,6 @@
 				<div class="text-center">
 					<img src="" id="image" class="img-fluid">
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>
