@@ -108,7 +108,7 @@
 							</div>
 							<div class="col-12 col-md-6 col-lg-6">
 								<div class="form-group">
-									<label>Photo KTP</label><small class="text-danger"> *</small>
+									<label>Photo KTP</label>
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<div class="input-group-text">
@@ -121,7 +121,7 @@
 									<img src="<?= base_url('assets/images/' . $pelanggan['photo_ktp']) ?>" id="preview-img-ktp" class="img-fluid img-thumbnail mt-2" width="150">
 								</div>
 								<div class="form-group">
-									<label>Photo Selfie</label><small class="text-danger"> *</small>
+									<label>Photo Selfie</label>
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<div class="input-group-text">

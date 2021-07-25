@@ -54,6 +54,9 @@
 						</div>
 						<div class="card-body">
 							<?= $countOnProgress ?>
+							<?php if ($countOnProgress > 0) : ?>
+								<small class="text-danger">Membutuhkan persetujuan!</small>
+							<?php endif ?>
 						</div>
 					</div>
 				</div>

@@ -192,4 +192,20 @@ class Kaubis extends CI_Controller
 			redirect('kaubis/input_user');
 		}
 	}
+	public function laporan()
+	{
+		$this->form_validation->set_rules('awal', 'Awal', 'required');
+		$this->form_validation->set_rules('akhir', 'Akhir', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data = [
+				'judul' => 'Kaubis | Laporan',
+				'content' => 'kaubis/contents/laporan',
+			];
+			$this->load->view('kaubis/layouts/app-input', $data);
+		} else {
+			$this->session->set_flashdata('success', 'Data berhasil disimpan.');
+			redirect('kaubis/laporan');
+		}
+	}
 }

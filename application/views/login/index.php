@@ -59,7 +59,7 @@
 							</div>
 
 							<div class="form-group text-right">
-								<a href="<?= base_url() ?>" class="d-inline mr-2"><i class="fas fa-arrow-left"></i> Kembali ke home </a>
+								<a href="<?= base_url() ?>" class="d-inline mr-2"><i class="fas fa-arrow-left"></i> Kembali ke beranda </a>
 								<button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
 									Login
 								</button>
@@ -71,8 +71,9 @@
 					<div class="absolute-bottom-left index-2">
 						<div class="text-light p-5 pb-2">
 							<div class="mb-5 pb-3">
-								<h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
-								<h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+								<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80">
+								<h1 class="mb-2 display-4 font-weight-bold">Telkom Indonesia</h1>
+								<h5 class="font-weight-normal text-muted-transparent">Bandung, Indonesia</h5>
 							</div>
 							Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
 						</div>
