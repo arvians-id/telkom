@@ -1,5 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require('./application/third_party/phpoffice/vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 class Kaubis extends CI_Controller
 {
@@ -204,8 +209,117 @@ class Kaubis extends CI_Controller
 			];
 			$this->load->view('kaubis/layouts/app-input', $data);
 		} else {
-			$this->session->set_flashdata('success', 'Data berhasil disimpan.');
-			redirect('kaubis/laporan');
+			$awal = $this->input->post('awal');
+			$akhir = $this->input->post('akhir');
+			$getPelanggan = $this->pelanggan_m->getPelangganLaporan($awal, $akhir);
+
+			$excel = new Spreadsheet();
+
+			$excel->getProperties()->setCreator('ARAS FUTUHAT');
+			$excel->getProperties()->setLastModifiedBy('ARAS FUTUHAT');
+			$excel->getProperties()->setTitle('PT TELKOM INDONESIA');
+
+			$excel->getActiveSheet()->getStyle('C1')->applyFromArray([
+				'font'  => [
+					'bold'  => true,
+					'size'  => 14,
+					'name'  => 'Times New Rowman'
+				]
+			]);
+			$style = [
+				'font'  => [
+					'size'  => 12,
+					'name'  => 'Times New Rowman'
+				]
+			];
+			$excel->getActiveSheet()->getStyle('C2')->applyFromArray($style);
+			$excel->getActiveSheet()->getStyle('C3')->applyFromArray($style);
+			$excel->getActiveSheet()->getStyle('C1:H3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('A5:J5')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('A5:J5')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+			$excel->getActiveSheet()->getColumnDimension('A')->setWidth(8);
+			$excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+			$excel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+			$excel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+			$excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+			$excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+			$excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+			$excel->getActiveSheet()->getColumnDimension('H')->setWidth(25);
+			$excel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+			$excel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+			$excel->getActiveSheet()->getRowDimension('5')->setRowHeight(30);
+			$excel->getActiveSheet()->mergeCells('C1:H1');
+			$excel->getActiveSheet()->mergeCells('C2:H2');
+			$excel->getActiveSheet()->mergeCells('C3:H3');
+
+			$excel->setActiveSheetIndex(0)
+				->setCellValue('C1', 'PT TELKOM INDONESIA - TELKOM AKSES')
+				->setCellValue('C2', 'Telkom Sadang Serang, Jl Sadang Serang no 42')
+				->setCellValue('C3', 'Laporan ' . date('d/m/Y', strtotime($awal)) . ' - ' . date('d/m/Y', strtotime($akhir)));
+			$excel->setActiveSheetIndex(0)
+				->setCellValue('A5', 'No')
+				->setCellValue('B5', 'Kode Pelanggan')
+				->setCellValue('C5', 'Nama Lengkap')
+				->setCellValue('D5', 'Email')
+				->setCellValue('E5', 'No Handphone')
+				->setCellValue('F5', 'Alamat')
+				->setCellValue('G5', 'Paket')
+				->setCellValue('H5', 'Status')
+				->setCellValue('I5', 'Tanggal Dibuat')
+				->setCellValue('J5', 'Terakhir Diubah');
+
+			$column = 6;
+			$no = 1;
+			if (!empty($getPelanggan)) {
+				if (is_array($getPelanggan)) {
+					foreach ($getPelanggan as $pelanggan) {
+						$excel->getActiveSheet()->getStyle('A' . $column . ':J' . $column)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+						$excel->setActiveSheetIndex(0)
+							->setCellValue('A' . $column, $no++)
+							->setCellValue('B' . $column, $pelanggan['kode_pelanggan'])
+							->setCellValue('C' . $column, $pelanggan['nama'])
+							->setCellValue('D' . $column, $pelanggan['email'])
+							->setCellValue('E' . $column, $pelanggan['no_hp'])
+							->setCellValue('F' . $column, $pelanggan['alamat'])
+							->setCellValue('G' . $column, $pelanggan['paket'])
+							->setCellValue('H' . $column, $pelanggan['status'])
+							->setCellValue('I' . $column, $pelanggan['created_at'])
+							->setCellValue('J' . $column, $pelanggan['updated_at']);
+
+						if ($pelanggan['status_id'] == 0) {
+							$color = 'ffa426';
+						} elseif ($pelanggan['status_id'] == 1) {
+							$color = 'fc544b';
+						} elseif ($pelanggan['status_id'] == 2) {
+							$color = '47c363';
+						} elseif ($pelanggan['status_id'] == 3) {
+							$color = 'cdd3d8';
+						} elseif ($pelanggan['status_id'] == 4) {
+							$color = 'fc544b';
+						}
+						$excel
+							->getActiveSheet()
+							->getStyle('H' . $column . ':H' . $column)
+							->getFill()
+							->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+							->getStartColor()
+							->setARGB($color);
+						$column++;
+					}
+				}
+			} else {
+				$this->session->set_flashdata('error', 'Tidak ada data ditemukan.');
+				redirect('kaubis/laporan');
+			}
+			$writer = new Xlsx($excel);
+			$fileName = bin2hex(random_bytes(12));
+
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+			header('Cache-Control: max-age=0');
+
+			$writer->save('php://output');
+			exit;
 		}
 	}
 }

@@ -1,13 +1,13 @@
 <div class="navbar-bg"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
-	<a href="index.html" class="navbar-brand sidebar-gone-hide">Telkom Indonesia</a>
+	<a href="index.html" class="navbar-brand sidebar-gone-hide">PT Telkom Indonesia</a>
 	<div class="navbar-nav">
 		<a href="<?= base_url() ?>" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
 	</div>
 	<?php if ($this->session->userdata('username')) : ?>
 		<ul class="navbar-nav navbar-right ml-auto">
 			<li class="dropdown"><a href="javascript:void(0);" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-					<img alt="image" src="<?= base_url('assets/template/stisla') ?>/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+					<img alt="image" src="<?= base_url('assets/images/' . $this->session->userdata('photo')) ?>" class="rounded-circle mr-1" height="30">
 					<div class="d-sm-none d-lg-inline-block">Hi, <?= ucfirst($this->session->userdata('username')) ?></div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">

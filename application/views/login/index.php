@@ -25,7 +25,7 @@
 				<div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
 					<div class="p-4 m-3">
 						<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
-						<h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Telkom Indonesia</span></h4>
+						<h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Telkom Akses Bandung</span></h4>
 						<p class="text-muted">Before you get started, you must login.</p>
 						<?php if ($this->session->flashdata('success')) : ?>
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -72,10 +72,10 @@
 						<div class="text-light p-5 pb-2">
 							<div class="mb-5 pb-3">
 								<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80">
-								<h1 class="mb-2 display-4 font-weight-bold">Telkom Indonesia</h1>
+								<h1 class="mb-2 display-4 font-weight-bold">Telkom Akses</h1>
 								<h5 class="font-weight-normal text-muted-transparent">Bandung, Indonesia</h5>
 							</div>
-							Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
+							Telkom Sadang Serang, Jl Sadang Serang no 42
 						</div>
 					</div>
 				</div>

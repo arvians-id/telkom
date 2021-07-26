@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2021 at 07:51 PM
+-- Generation Time: Jul 26, 2021 at 07:59 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -66,9 +66,9 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama`, `email`, `no_hp`, `alamat`, `paket_id`, `photo_ktp`, `photo_selfie`, `created_at`, `updated_at`) VALUES
-(9, '755086942298', 'Widdy Arfiansyah', 'widdyarfiansyah@ummi.ac.id', '08229992172', 'Sukabumi Cisaat', 2, 'undraw_Operating_system_re_iqsc.png', 'undraw_online_dating_yruf.png', '2021-07-24 21:45:13', '2021-07-24 21:45:24'),
-(10, '391294966325', 'Widdy Arfiansyah', 'widdyarfiansyah@ummi.ac.id', '08229992172', 'Sukabumi Cisaat', 3, 'susah1.png', 'pendataanFINAL.png', '2021-07-24 21:47:10', '2021-07-24 21:47:10'),
-(11, '324549375826', 'Tanggos', 'widdyarfiansyah@ummi.ac.ids', '0822999217204', 'Sukabumi Cisaats', 3, 'susah11.png', 'undraw_online_dating_yruf1.png', '2021-07-24 21:48:15', '2021-07-24 21:53:15');
+(9, '755086942298', 'Widdy Arfiansyah', 'widdyarfiansyah@ummi.ac.id', '08229992172', 'Sukabumi Cisaat', 2, 'index.jpg', 'LOGO_PN_SUKABUMI_COLOUR_BARU.png', '2021-06-30 21:45:13', '2021-07-25 22:42:47'),
+(10, '391294966325', 'Widdy Arfiansyah', 'widdyarfiansyah@ummi.ac.id', '08229992172', 'Sukabumi Cisaat', 3, 'susah1.png', 'pendataanFINAL.png', '2021-07-09 21:47:10', '2021-07-24 21:47:10'),
+(11, '324549375826', 'Tanggos', 'widdyarfiansyah@ummi.ac.ids', '08229992172', 'Sukabumi Cisaats', 3, 'logo.png', 'logo-noname.png', '2021-08-09 21:48:15', '2021-07-25 22:44:05');
 
 -- --------------------------------------------------------
 
@@ -111,8 +111,8 @@ CREATE TABLE `tbl_status_pelanggan` (
 
 INSERT INTO `tbl_status_pelanggan` (`pelanggan_id`, `status_id`, `keterangan`) VALUES
 (9, 2, NULL),
-(10, 2, NULL),
-(11, 2, NULL);
+(10, 4, NULL),
+(11, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `role`, `email`, `nama_lengkap`, `no_hp`, `alamat`, `photo`, `bio`, `created_at`, `updated_at`) VALUES
-(6, 'kaubis', 'e10adc3949ba59abbe56e057f20f883e', 'kaubis', 'widdyarfiansyah00@gmail.com', 'widdy arfiansyahh', '082299921720', 'Sukabumi Cisaat', 'ummi.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-07-25 01:28:20', '2021-07-24 19:40:57'),
+(6, 'kaubis', 'e10adc3949ba59abbe56e057f20f883e', 'kaubis', 'widdyarfiansyah00@gmail.com', 'widdy arfiansyahh', '082299921720', 'Sukabumi Cisaat', 'hmif.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-07-25 01:28:20', '2021-07-25 22:50:38'),
 (7, 'tleader', 'e10adc3949ba59abbe56e057f20f883e', 'tleader', 'tleader@gmail.com', 'tleader', '082299921720', 'Sukabumi bhayangkara', 'default.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-07-25 03:32:56', '2021-07-24 20:26:52');
 
 --

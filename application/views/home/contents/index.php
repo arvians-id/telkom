@@ -2,11 +2,10 @@
 	<section class="section">
 		<div class="section-header">
 			<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="rounded-circle">
-			<h1>Telkom Indonesia</h1>
+			<h1>Telkom Akses</h1>
 		</div>
 
 		<div class="section-body">
-			<h2 class="section-title">Brosur</h2>
 			<div class="d-flex justify-content-between">
 				<div>
 					<a href="javascript:void(0);" data-img="1.jpg" class="preview-brosur">
@@ -24,6 +23,7 @@
 					</a>
 				</div>
 			</div>
+			<h2 class="section-title">Data Pelanggan</h2>
 			<div class="card">
 				<div class="card-header">
 					<h4>Pelanggan</h4>

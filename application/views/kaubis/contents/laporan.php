@@ -33,7 +33,7 @@
 							</button>
 						</div>
 					<?php endif; ?>
-					<form method="POST" enctype="multipart/form-data">
+					<form method="POST">
 						<div class="row justify-content-center">
 							<div class="col-12 col-md-6 col-lg-6">
 								<div class="form-group">

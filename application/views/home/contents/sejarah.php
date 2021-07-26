@@ -2,7 +2,7 @@
 	<section class="section">
 		<div class="section-header">
 			<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="rounded-circle">
-			<h1>Telkom Indonesia</h1>
+			<h1>Telkom Akses</h1>
 		</div>
 
 		<div class="section-body">

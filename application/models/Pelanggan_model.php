@@ -112,4 +112,17 @@ class Pelanggan_model extends CI_Model
 		$this->db->where('id_pelanggan', $id_pelanggan);
 		$this->db->update('tbl_pelanggan', $data);
 	}
+	public function getPelangganLaporan($awal, $akhir)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_status_pelanggan a');
+		$this->db->join('tbl_pelanggan b', 'a.pelanggan_id = b.id_pelanggan');
+		$this->db->join('tbl_status c', 'a.status_id = c.id_status');
+		$this->db->join('tbl_paket d', 'b.paket_id = d.id_paket');
+		$this->db->where("DATE(b.created_at) >=", $awal);
+		$this->db->where("DATE(b.created_at) <=", $akhir);
+		$this->db->order_by('b.id_pelanggan', 'desc');
+
+		return $this->db->get()->result_array();
+	}
 }
