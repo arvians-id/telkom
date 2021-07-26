@@ -1,10 +1,10 @@
 <div class="main-sidebar">
 	<aside id="sidebar-wrapper">
 		<div class="sidebar-brand">
-			<a href="<?= base_url('kaubis') ?>">Kaubis</a>
+			<a href="<?= base_url('kaubis') ?>">Kepala Unit Bisnis</a>
 		</div>
 		<div class="sidebar-brand sidebar-brand-sm">
-			<a href="<?= base_url('kaubis') ?>">KB</a>
+			<a href="<?= base_url('kaubis') ?>">KUB</a>
 		</div>
 		<ul class="sidebar-menu">
 			<li class="menu-header">Home</li>
