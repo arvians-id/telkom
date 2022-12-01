@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 01 Des 2022 pada 05.09
+-- Waktu pembuatan: 01 Des 2022 pada 09.27
 -- Versi server: 5.7.33
 -- Versi PHP: 7.4.19
 
@@ -123,11 +123,19 @@ INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama`, `email`, 
 CREATE TABLE `tbl_riwayat` (
   `id_riwayat` int(11) NOT NULL,
   `kode_riwayat` varchar(20) NOT NULL,
-  `kode_pelanggan` varchar(20) NOT NULL,
+  `kode_pelanggan` varchar(15) NOT NULL,
   `kode_modem` varchar(20) NOT NULL,
   `jawaban` text NOT NULL,
+  `kode_solusi` varchar(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_riwayat`
+--
+
+INSERT INTO `tbl_riwayat` (`id_riwayat`, `kode_riwayat`, `kode_pelanggan`, `kode_modem`, `jawaban`, `kode_solusi`, `created_at`) VALUES
+(1, 'KR1', '755086942298', 'VV1', 'CC1,CCS', NULL, '2022-12-01 08:55:51');
 
 -- --------------------------------------------------------
 
@@ -147,7 +155,8 @@ CREATE TABLE `tbl_rules` (
 --
 
 INSERT INTO `tbl_rules` (`id_rules`, `kode_rules`, `kode_solusi_rules`, `kode_gejala_rules`) VALUES
-(1, 'R1', 'CC1', 'CC1,CCS');
+(2, 'R1', 'CC1', 'CC1,CCS'),
+(3, 'R2', 'CC1', 'CCS');
 
 -- --------------------------------------------------------
 
@@ -169,7 +178,9 @@ CREATE TABLE `tbl_solusi` (
 --
 
 INSERT INTO `tbl_solusi` (`id_solusi`, `kode_solusi`, `judul`, `solusi`, `created_at`, `updated_at`) VALUES
-(1, 'CC1', 'Itaque reprehenderit', 'Minima vel omnis qua', '2022-11-30 21:17:55', '2022-11-30 21:17:55');
+(1, 'CC1', 'Itaque reprehenderit', 'Minima vel omnis qua', '2022-11-30 21:17:55', '2022-11-30 21:17:55'),
+(2, 'S1', 'Sint non magni ipsam', '<p>asd<br></p>', '2022-12-01 01:23:01', '2022-12-01 01:23:01'),
+(3, 'S2', 'Ut non odit aute per', '<ol><li>asdasd</li><li>asdasd</li><li>fdsssf<br></li></ol>', '2022-12-01 01:24:49', '2022-12-01 01:24:49');
 
 -- --------------------------------------------------------
 
@@ -258,7 +269,8 @@ ALTER TABLE `tbl_gejala`
 -- Indeks untuk tabel `tbl_modem`
 --
 ALTER TABLE `tbl_modem`
-  ADD PRIMARY KEY (`id_modem`);
+  ADD PRIMARY KEY (`id_modem`),
+  ADD UNIQUE KEY `kode_modem` (`kode_modem`);
 
 --
 -- Indeks untuk tabel `tbl_paket`
@@ -277,7 +289,8 @@ ALTER TABLE `tbl_pelanggan`
 -- Indeks untuk tabel `tbl_riwayat`
 --
 ALTER TABLE `tbl_riwayat`
-  ADD PRIMARY KEY (`id_riwayat`);
+  ADD PRIMARY KEY (`id_riwayat`),
+  ADD KEY `kode_modem` (`kode_modem`);
 
 --
 -- Indeks untuk tabel `tbl_rules`
@@ -342,19 +355,19 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT untuk tabel `tbl_riwayat`
 --
 ALTER TABLE `tbl_riwayat`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_rules`
 --
 ALTER TABLE `tbl_rules`
-  MODIFY `id_rules` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rules` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_solusi`
 --
 ALTER TABLE `tbl_solusi`
-  MODIFY `id_solusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_solusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_users`
