@@ -51,7 +51,7 @@
 												<td>
 													<?= $riwayat['kode_riwayat'] ?>
 													<br>
-													<a href="<?= base_url('tleader/ubah_riwayat/' . $riwayat['kode_riwayat']) ?>">Ubah</a> |
+													<a href="<?= base_url('tleader/detail_riwayat/' . $riwayat['kode_riwayat']) ?>">Detail</a> |
 													<a href="<?= base_url('tleader/hapus_riwayat/' . $riwayat['kode_riwayat']) ?>" onclick="return confirm('Yakin ingin menghapusnya?')">Hapus</a>
 												</td>
 												<td><?= $riwayat['kode_pelanggan'] ?></td>

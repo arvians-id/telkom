@@ -13,6 +13,7 @@
 
 	<!-- CSS Libraries -->
 	<link rel="stylesheet" href="<?= base_url('assets/template/stisla') ?>/node_modules/select2/dist/css/select2.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/template/stisla') ?>/node_modules/summernote/dist/summernote-bs4.css">
 
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="<?= base_url('assets/template/stisla') ?>/assets/css/style.css">
@@ -43,6 +44,7 @@
 
 	<!-- JS Libraies -->
 	<script src="<?= base_url('assets/template/stisla') ?>/node_modules/select2/dist/js/select2.full.min.js"></script>
+	<script src="<?= base_url('assets/template/stisla') ?>/node_modules/summernote/dist/summernote-bs4.js"></script>
 
 	<!-- Template JS File -->
 	<script src="<?= base_url('assets/template/stisla') ?>/assets/js/scripts.js"></script>
@@ -53,6 +55,8 @@
 		$('#generate-id').on('click', function() {
 			generate()
 		})
+
+		$('.summernote').attr('name', 'solusi');
 
 		function generate() {
 			$.ajax({

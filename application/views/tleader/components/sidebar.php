@@ -18,14 +18,14 @@
 					<li <?= activeClassMenu(['input_pelanggan']) ?>><a class="nav-link" href="<?= base_url('tleader/input_pelanggan') ?>">Input</a></li>
 				</ul>
 			</li>
-			<li class="nav-item dropdown <?= activeMenu(['data_riwayat', 'data_gejala', 'data_solusi', 'data_rules', 'data_modem']) ?>">
+			<li class="nav-item dropdown <?= activeMenu(['data_riwayat', 'data_gejala', 'data_solusi', 'data_rules', 'data_modem', 'ubah_riwayat', 'ubah_gejala', 'ubah_solusi', 'ubah_rules', 'ubah_modem', 'input_rules', 'input_solusi', 'detail_riwayat']) ?>">
 				<a href="javascript:void(0);" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>Keluhan Pelanggan</span></a>
 				<ul class="dropdown-menu">
-					<li <?= activeClassMenu(['data_riwayat']) ?>><a class="nav-link" href="<?= base_url('tleader/data_riwayat') ?>">Data Riwayat</a></li>
-					<li <?= activeClassMenu(['data_gejala']) ?>><a class="nav-link" href="<?= base_url('tleader/data_gejala') ?>">Data Gejala</a></li>
-					<li <?= activeClassMenu(['data_solusi']) ?>><a class="nav-link" href="<?= base_url('tleader/data_solusi') ?>">Data Solusi</a></li>
-					<li <?= activeClassMenu(['data_rules']) ?>><a class="nav-link" href="<?= base_url('tleader/data_rules') ?>">Data Rules</a></li>
-					<li <?= activeClassMenu(['data_modem']) ?>><a class="nav-link" href="<?= base_url('tleader/data_modem') ?>">Data Modem</a></li>
+					<li <?= activeClassMenu(['data_riwayat', 'ubah_riwayat', 'detail_riwayat']) ?>><a class="nav-link" href="<?= base_url('tleader/data_riwayat') ?>">Data Riwayat</a></li>
+					<li <?= activeClassMenu(['data_gejala', 'ubah_gejala']) ?>><a class="nav-link" href="<?= base_url('tleader/data_gejala') ?>">Data Gejala</a></li>
+					<li <?= activeClassMenu(['data_solusi', 'ubah_solusi', 'input_solusi']) ?>><a class="nav-link" href="<?= base_url('tleader/data_solusi') ?>">Data Solusi</a></li>
+					<li <?= activeClassMenu(['data_rules', 'ubah_rules', 'input_rules']) ?>><a class="nav-link" href="<?= base_url('tleader/data_rules') ?>">Data Rules</a></li>
+					<li <?= activeClassMenu(['data_modem', 'ubah_modem']) ?>><a class="nav-link" href="<?= base_url('tleader/data_modem') ?>">Data Modem</a></li>
 				</ul>
 			</li>
 			<li <?= activeClassMenu(['profil']) ?>><a class="nav-link" href="<?= base_url('tleader/profil') ?>"><i class="fas fa-address-card"></i> <span>Profil</span></a></li>

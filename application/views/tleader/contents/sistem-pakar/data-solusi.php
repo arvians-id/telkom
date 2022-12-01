@@ -23,34 +23,6 @@
 				</button>
 			</div>
 		<?php endif; ?>
-		<h2 class="section-title">Input Solusi</h2>
-		<div class="section-body">
-			<div class="card">
-				<div class="card-header">
-					<h4>Input Solusi</h4>
-				</div>
-				<div class="card-body">
-					<form method="POST" enctype="multipart/form-data">
-						<div class="form-group">
-							<label>Kode Solusi</label><small class="text-danger"> *</small>
-							<input type="text" name="kode_solusi" class="form-control <?= form_error('kode_solusi') ? 'is-invalid' : '' ?>" value="<?= set_value('kode_solusi') ?>">
-							<div class="invalid-feedback"><?= form_error('kode_solusi') ?></div>
-						</div>
-						<div class="form-group">
-							<label>Judul Solusi</label><small class="text-danger"> *</small>
-							<input type="text" name="judul" class="form-control <?= form_error('judul') ? 'is-invalid' : '' ?>" value="<?= set_value('judul') ?>">
-							<div class="invalid-feedback"><?= form_error('judul') ?></div>
-						</div>
-						<div class="form-group">
-							<label>Solusi</label><small class="text-danger"> *</small>
-							<textarea name="solusi" class="form-control <?= form_error('solusi') ? 'is-invalid' : '' ?>"><?= set_value('solusi') ?></textarea>
-							<div class="invalid-feedback"><?= form_error('solusi') ?></div>
-						</div>
-						<button type="submit" class="btn btn-primary">Simpan</button>
-					</form>
-				</div>
-			</div>
-		</div>
 		<h2 class="section-title">Data Solusi</h2>
 		<div class="section-body">
 			<div class="row">
@@ -58,6 +30,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h4>Data Solusi</h4>
+							<a href="<?= base_url('tleader/input_solusi') ?>" class="btn btn-primary ml-auto"><i class="fas fa-plus-circle"></i> Tambah Solusi</a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

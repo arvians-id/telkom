@@ -23,26 +23,27 @@
 				</button>
 			</div>
 		<?php endif; ?>
-		<h2 class="section-title">Ubah Solusi</h2>
+		<h2 class="section-title">Input Solusi</h2>
 		<div class="section-body">
 			<div class="card">
 				<div class="card-header">
-					<h4>Ubah Solusi</h4>
+					<h4>Input Solusi</h4>
 				</div>
 				<div class="card-body">
-					<form method="POST" enctype="multipart/form-data">
+					<form method="POST">
 						<div class="form-group">
-							<label>Kode Solusi</label>
-							<input type="text" class="form-control" value="<?= $getSolusi["kode_solusi"] ?>" readonly>
+							<label>Kode Solusi</label><small class="text-danger"> *</small>
+							<input type="text" name="kode_solusi" class="form-control <?= form_error('kode_solusi') ? 'is-invalid' : '' ?>" value="<?= set_value('kode_solusi') ?>">
+							<div class="invalid-feedback"><?= form_error('kode_solusi') ?></div>
 						</div>
 						<div class="form-group">
 							<label>Judul Solusi</label><small class="text-danger"> *</small>
-							<input type="text" name="judul" class="form-control <?= form_error('judul') ? 'is-invalid' : '' ?>" value="<?= set_value('judul', $getSolusi["judul"]) ?>">
+							<input type="text" name="judul" class="form-control <?= form_error('judul') ? 'is-invalid' : '' ?>" value="<?= set_value('judul') ?>">
 							<div class="invalid-feedback"><?= form_error('judul') ?></div>
 						</div>
 						<div class="form-group">
 							<label>Solusi</label><small class="text-danger"> *</small>
-							<textarea name="solusi" class="summernote"><?= set_value('solusi', $getSolusi["solusi"]) ?></textarea>
+							<textarea name="solusi" class="summernote"><?= set_value('solusi') ?></textarea>
 							<div class="invalid-feedback"><?= form_error('solusi') ?></div>
 						</div>
 						<button type="submit" class="btn btn-primary">Simpan</button>

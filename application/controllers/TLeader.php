@@ -141,6 +141,15 @@ class TLeader extends CI_Controller
 		];
 		$this->load->view('tleader/layouts/app-data', $data);
 	}
+	public function detail_riwayat($kode_riwayat)
+	{
+		$data = [
+			'judul' => 'Team Leader | Detail Riwayat',
+			'content' => 'tleader/contents/sistem-pakar/detail-riwayat',
+			'getRiwayat' => $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array(),
+		];
+		$this->load->view('tleader/layouts/app-data', $data);
+	}
 	public function hapus_riwayat($kode_riwayat)
 	{
 		$this->db->delete('tbl_riwayat', ['kode_riwayat' => $kode_riwayat]);
@@ -236,17 +245,26 @@ class TLeader extends CI_Controller
 	// SOLUSI
 	public function data_solusi()
 	{
+		$data = [
+			'judul' => 'Team Leader | Data Solusi',
+			'content' => 'tleader/contents/sistem-pakar/data-solusi',
+			'getSolusi' => $this->db->get('tbl_solusi')->result_array(),
+		];
+		$this->load->view('tleader/layouts/app-data', $data);
+	}
+	public function input_solusi()
+	{
 		$this->form_validation->set_rules('kode_solusi', 'Kode Solusi', 'required|max_length[20]|is_unique[tbl_solusi.kode_solusi]');
 		$this->form_validation->set_rules('judul', 'Kode Solusi', 'required|max_length[256]');
 		$this->form_validation->set_rules('solusi', 'Solusi', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'judul' => 'Team Leader | Data Solusi',
-				'content' => 'tleader/contents/sistem-pakar/data-solusi',
+				'judul' => 'Team Leader | Input Solusi',
+				'content' => 'tleader/contents/sistem-pakar/input-solusi',
 				'getSolusi' => $this->db->get('tbl_solusi')->result_array(),
 			];
-			$this->load->view('tleader/layouts/app-data', $data);
+			$this->load->view('tleader/layouts/app-input', $data);
 		} else {
 			$this->solusi_m->simpanSolusi();
 			$this->session->set_flashdata('success', 'Data berhasil ditambahkan.');
@@ -264,7 +282,7 @@ class TLeader extends CI_Controller
 				'content' => 'tleader/contents/sistem-pakar/ubah-solusi',
 				'getSolusi' => $this->db->get_where('tbl_solusi', ["kode_solusi" => $kode_solusi])->row_array(),
 			];
-			$this->load->view('tleader/layouts/app-data', $data);
+			$this->load->view('tleader/layouts/app-input', $data);
 		} else {
 			$this->solusi_m->ubahSolusi($kode_solusi);
 			$this->session->set_flashdata('success', 'Data berhasil diubah.');
@@ -297,7 +315,6 @@ class TLeader extends CI_Controller
 			$data = [
 				'judul' => 'Team Leader | Input Data Rules',
 				'content' => 'tleader/contents/sistem-pakar/input-rules',
-				'getRules' => $this->db->get('tbl_rules')->result_array(),
 				'getSolusi' => $this->db->get('tbl_solusi')->result_array(),
 				'getGejala' => $this->db->get('tbl_gejala')->result_array(),
 			];
@@ -310,16 +327,18 @@ class TLeader extends CI_Controller
 	}
 	public function ubah_rules($kode_rules)
 	{
-		$this->form_validation->set_rules('judul', 'Kode Rules', 'required|max_length[256]');
-		$this->form_validation->set_rules('rules', 'Rules', 'required');
+		$this->form_validation->set_rules('kode_solusi_rules', 'Kode Solusi', 'required');
+		$this->form_validation->set_rules('kode_gejala_rules[]', 'Kode Gejala', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
 				'judul' => 'Team Leader | Ubah Data Rules',
 				'content' => 'tleader/contents/sistem-pakar/ubah-rules',
 				'getRules' => $this->db->get_where('tbl_rules', ["kode_rules" => $kode_rules])->row_array(),
+				'getSolusi' => $this->db->get('tbl_solusi')->result_array(),
+				'getGejala' => $this->db->get('tbl_gejala')->result_array(),
 			];
-			$this->load->view('tleader/layouts/app-data', $data);
+			$this->load->view('tleader/layouts/app-input', $data);
 		} else {
 			$this->rules_m->ubahRules($kode_rules);
 			$this->session->set_flashdata('success', 'Data berhasil diubah.');
