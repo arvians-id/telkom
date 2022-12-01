@@ -68,3 +68,17 @@ Acknowledgement
 
 The CodeIgniter team would like to thank EllisLab, all the
 contributors to the CodeIgniter project and you, the CodeIgniter user.
+
+*******
+Authors
+*******
+
+- [@arvians-id](https://www.github.com/arvians-id)
+
+
+*******
+Contribute
+*******
+
+
+- Saweria : https://saweria.co/widdyarfian
