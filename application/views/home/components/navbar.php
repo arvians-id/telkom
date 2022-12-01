@@ -1,6 +1,6 @@
 <div class="navbar-bg"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
-	<a href="index.html" class="navbar-brand sidebar-gone-hide">PT Telkom Indonesia</a>
+	<a href="<?= base_url() ?>" class="navbar-brand sidebar-gone-hide">PT Telkom Indonesia</a>
 	<div class="navbar-nav">
 		<a href="<?= base_url() ?>" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
 	</div>
@@ -39,6 +39,9 @@
 			</li>
 			<li class="nav-item <?= activeMenu(['sejarah']) ?>">
 				<a href="<?= base_url('home/sejarah') ?>" class="nav-link"><i class="fas fa-book-reader"></i><span>Sejarah PT Telkom</span></a>
+			</li>
+			<li class="nav-item <?= activeMenu(['sejarah']) ?>">
+				<a href="<?= base_url('home/sejarah') ?>" class="nav-link"><i class="fa fa-user"></i><span>Keluhan Pelanggan</span></a>
 			</li>
 		</ul>
 	</div>

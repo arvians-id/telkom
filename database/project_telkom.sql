@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 26, 2021 at 07:59 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.26
+-- Host: localhost:3306
+-- Waktu pembuatan: 01 Des 2022 pada 05.09
+-- Versi server: 5.7.33
+-- Versi PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_paket`
+-- Struktur dari tabel `tbl_gejala`
+--
+
+CREATE TABLE `tbl_gejala` (
+  `id_gejala` int(11) NOT NULL,
+  `kode_gejala` varchar(20) NOT NULL,
+  `gejala` varchar(256) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_gejala`
+--
+
+INSERT INTO `tbl_gejala` (`id_gejala`, `kode_gejala`, `gejala`, `created_at`, `updated_at`) VALUES
+(2, 'CC1', 'Enim vel in aut offi', '2022-11-30 20:27:19', '2022-11-30 20:30:49'),
+(3, 'CCS', 'Beatae aliqua Solut', '2022-11-30 21:59:44', '2022-11-30 21:59:44');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_modem`
+--
+
+CREATE TABLE `tbl_modem` (
+  `id_modem` int(11) NOT NULL,
+  `kode_modem` varchar(20) NOT NULL,
+  `type_modem` varchar(100) NOT NULL,
+  `modem` varchar(256) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_modem`
+--
+
+INSERT INTO `tbl_modem` (`id_modem`, `kode_modem`, `type_modem`, `modem`, `created_at`, `updated_at`) VALUES
+(2, 'VV1', 'HG8145V5', 'Huawei', '2022-11-30 20:40:33', '2022-11-30 20:41:25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_paket`
 --
 
 CREATE TABLE `tbl_paket` (
@@ -33,7 +77,7 @@ CREATE TABLE `tbl_paket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_paket`
+-- Dumping data untuk tabel `tbl_paket`
 --
 
 INSERT INTO `tbl_paket` (`id_paket`, `paket`) VALUES
@@ -44,7 +88,7 @@ INSERT INTO `tbl_paket` (`id_paket`, `paket`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pelanggan`
+-- Struktur dari tabel `tbl_pelanggan`
 --
 
 CREATE TABLE `tbl_pelanggan` (
@@ -62,7 +106,7 @@ CREATE TABLE `tbl_pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_pelanggan`
+-- Dumping data untuk tabel `tbl_pelanggan`
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama`, `email`, `no_hp`, `alamat`, `paket_id`, `photo_ktp`, `photo_selfie`, `created_at`, `updated_at`) VALUES
@@ -73,7 +117,64 @@ INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama`, `email`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_status`
+-- Struktur dari tabel `tbl_riwayat`
+--
+
+CREATE TABLE `tbl_riwayat` (
+  `id_riwayat` int(11) NOT NULL,
+  `kode_riwayat` varchar(20) NOT NULL,
+  `kode_pelanggan` varchar(20) NOT NULL,
+  `kode_modem` varchar(20) NOT NULL,
+  `jawaban` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_rules`
+--
+
+CREATE TABLE `tbl_rules` (
+  `id_rules` int(11) NOT NULL,
+  `kode_rules` varchar(20) NOT NULL,
+  `kode_solusi_rules` varchar(20) NOT NULL,
+  `kode_gejala_rules` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_rules`
+--
+
+INSERT INTO `tbl_rules` (`id_rules`, `kode_rules`, `kode_solusi_rules`, `kode_gejala_rules`) VALUES
+(1, 'R1', 'CC1', 'CC1,CCS');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_solusi`
+--
+
+CREATE TABLE `tbl_solusi` (
+  `id_solusi` int(11) NOT NULL,
+  `kode_solusi` varchar(20) NOT NULL,
+  `judul` varchar(256) NOT NULL,
+  `solusi` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_solusi`
+--
+
+INSERT INTO `tbl_solusi` (`id_solusi`, `kode_solusi`, `judul`, `solusi`, `created_at`, `updated_at`) VALUES
+(1, 'CC1', 'Itaque reprehenderit', 'Minima vel omnis qua', '2022-11-30 21:17:55', '2022-11-30 21:17:55');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_status`
 --
 
 CREATE TABLE `tbl_status` (
@@ -83,7 +184,7 @@ CREATE TABLE `tbl_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_status`
+-- Dumping data untuk tabel `tbl_status`
 --
 
 INSERT INTO `tbl_status` (`id_status`, `status`, `status_keterangan`) VALUES
@@ -96,7 +197,7 @@ INSERT INTO `tbl_status` (`id_status`, `status`, `status_keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_status_pelanggan`
+-- Struktur dari tabel `tbl_status_pelanggan`
 --
 
 CREATE TABLE `tbl_status_pelanggan` (
@@ -106,7 +207,7 @@ CREATE TABLE `tbl_status_pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_status_pelanggan`
+-- Dumping data untuk tabel `tbl_status_pelanggan`
 --
 
 INSERT INTO `tbl_status_pelanggan` (`pelanggan_id`, `status_id`, `keterangan`) VALUES
@@ -117,7 +218,7 @@ INSERT INTO `tbl_status_pelanggan` (`pelanggan_id`, `status_id`, `keterangan`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_users`
+-- Struktur dari tabel `tbl_users`
 --
 
 CREATE TABLE `tbl_users` (
@@ -130,13 +231,13 @@ CREATE TABLE `tbl_users` (
   `no_hp` varchar(15) DEFAULT NULL,
   `alamat` varchar(100) DEFAULT NULL,
   `photo` varchar(50) DEFAULT NULL,
-  `bio` longtext DEFAULT NULL,
+  `bio` longtext,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_users`
+-- Dumping data untuk tabel `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `role`, `email`, `nama_lengkap`, `no_hp`, `alamat`, `photo`, `bio`, `created_at`, `updated_at`) VALUES
@@ -148,71 +249,131 @@ INSERT INTO `tbl_users` (`id`, `username`, `password`, `role`, `email`, `nama_le
 --
 
 --
--- Indexes for table `tbl_paket`
+-- Indeks untuk tabel `tbl_gejala`
+--
+ALTER TABLE `tbl_gejala`
+  ADD PRIMARY KEY (`id_gejala`);
+
+--
+-- Indeks untuk tabel `tbl_modem`
+--
+ALTER TABLE `tbl_modem`
+  ADD PRIMARY KEY (`id_modem`);
+
+--
+-- Indeks untuk tabel `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
   ADD PRIMARY KEY (`id_paket`);
 
 --
--- Indexes for table `tbl_pelanggan`
+-- Indeks untuk tabel `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`),
   ADD KEY `paket_id` (`paket_id`);
 
 --
--- Indexes for table `tbl_status`
+-- Indeks untuk tabel `tbl_riwayat`
+--
+ALTER TABLE `tbl_riwayat`
+  ADD PRIMARY KEY (`id_riwayat`);
+
+--
+-- Indeks untuk tabel `tbl_rules`
+--
+ALTER TABLE `tbl_rules`
+  ADD PRIMARY KEY (`id_rules`);
+
+--
+-- Indeks untuk tabel `tbl_solusi`
+--
+ALTER TABLE `tbl_solusi`
+  ADD PRIMARY KEY (`id_solusi`);
+
+--
+-- Indeks untuk tabel `tbl_status`
 --
 ALTER TABLE `tbl_status`
   ADD PRIMARY KEY (`id_status`) USING BTREE;
 
 --
--- Indexes for table `tbl_status_pelanggan`
+-- Indeks untuk tabel `tbl_status_pelanggan`
 --
 ALTER TABLE `tbl_status_pelanggan`
   ADD PRIMARY KEY (`pelanggan_id`,`status_id`),
   ADD KEY `status_id` (`status_id`);
 
 --
--- Indexes for table `tbl_users`
+-- Indeks untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_paket`
+-- AUTO_INCREMENT untuk tabel `tbl_gejala`
+--
+ALTER TABLE `tbl_gejala`
+  MODIFY `id_gejala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_modem`
+--
+ALTER TABLE `tbl_modem`
+  MODIFY `id_modem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
   MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_pelanggan`
+-- AUTO_INCREMENT untuk tabel `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `tbl_users`
+-- AUTO_INCREMENT untuk tabel `tbl_riwayat`
+--
+ALTER TABLE `tbl_riwayat`
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_rules`
+--
+ALTER TABLE `tbl_rules`
+  MODIFY `id_rules` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_solusi`
+--
+ALTER TABLE `tbl_solusi`
+  MODIFY `id_solusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tbl_pelanggan`
+-- Ketidakleluasaan untuk tabel `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pelanggan`
   ADD CONSTRAINT `tbl_pelanggan_ibfk_1` FOREIGN KEY (`paket_id`) REFERENCES `tbl_paket` (`id_paket`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_status_pelanggan`
+-- Ketidakleluasaan untuk tabel `tbl_status_pelanggan`
 --
 ALTER TABLE `tbl_status_pelanggan`
   ADD CONSTRAINT `tbl_status_pelanggan_ibfk_1` FOREIGN KEY (`pelanggan_id`) REFERENCES `tbl_pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
