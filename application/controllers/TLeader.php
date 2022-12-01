@@ -13,6 +13,7 @@ class TLeader extends CI_Controller
 		$this->load->model('Modem_model', 'modem_m');
 		$this->load->model('Solusi_model', 'solusi_m');
 		$this->load->model('Rules_model', 'rules_m');
+		$this->load->model('Riwayat_model', 'riwayat_m');
 	}
 	public function index()
 	{
@@ -146,7 +147,8 @@ class TLeader extends CI_Controller
 		$data = [
 			'judul' => 'Team Leader | Detail Riwayat',
 			'content' => 'tleader/contents/sistem-pakar/detail-riwayat',
-			'getRiwayat' => $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array(),
+			'getRiwayat' => $this->riwayat_m->getRiwayatRelation($kode_riwayat),
+			'getJawaban' => $this->riwayat_m->getJawaban($kode_riwayat)
 		];
 		$this->load->view('tleader/layouts/app-data', $data);
 	}

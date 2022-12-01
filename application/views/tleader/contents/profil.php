@@ -3,7 +3,7 @@
 		<div class="section-header">
 			<h1>Kelola Profil</h1>
 			<div class="section-header-breadcrumb">
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
+				<div class="breadcrumb-item"><a href="<?= base_url('tleader') ?>">Team Leader</a></div>
 				<div class="breadcrumb-item active">Kelola Profil</div>
 			</div>
 		</div>

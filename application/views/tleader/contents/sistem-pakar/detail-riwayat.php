@@ -1,140 +1,69 @@
 <div class="main-content">
 	<section class="section">
 		<div class="section-header">
-			<h1>Kelola Profil</h1>
+			<h1>Kelola Riwayat</h1>
 			<div class="section-header-breadcrumb">
-				<div class="breadcrumb-item"><a href="<?= base_url('kaubis') ?>">Kaubis</a></div>
-				<div class="breadcrumb-item active">Kelola Profil</div>
+				<div class="breadcrumb-item"><a href="<?= base_url('tleader') ?>">Team Leader</a></div>
+				<div class="breadcrumb-item active">Kelola Riwayat</div>
 			</div>
 		</div>
 		<div class="section-body">
-			<h2 class="section-title">Profil</h2>
+			<h2 class="section-title">Riwayat</h2>
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-5">
 					<div class="card profile-widget">
 						<div class="profile-widget-header">
-							<img alt="image" src="<?= base_url('assets/images/' . $profil['photo']) ?>" class="rounded-circle profile-widget-picture" width="100" height="100">
 							<div class="profile-widget-items">
 								<div class="profile-widget-item">
-									<div class="profile-widget-item-label">Username</div>
-									<div class="profile-widget-item-value"><?= ucfirst($profil['username']) ?></div>
+									<div class="profile-widget-item-label">Nama</div>
+									<div class="profile-widget-item-value"><?= ucfirst($getRiwayat['nama']) ?></div>
 								</div>
 								<div class="profile-widget-item">
-									<div class="profile-widget-item-label">Role</div>
-									<div class="profile-widget-item-value"><?= $profil['role'] ?></div>
+									<div class="profile-widget-item-label">Kode Pelanggan</div>
+									<div class="profile-widget-item-value"><?= $getRiwayat['kode_pelanggan'] ?></div>
 								</div>
 							</div>
 						</div>
 						<div class="profile-widget-description">
-							<div class="profile-widget-name"><?= ucfirst($profil['username']) ?> <div class="text-muted d-inline font-weight-normal">
-									<div class="slash"></div> <?= ucfirst($profil['role']) ?>
-								</div>
-							</div>
 							<table class="table table-responsive">
 								<thead>
 									<tr>
-										<th>Username</th>
-										<td><?= $profil['username'] ?></td>
-									</tr>
-									<tr>
 										<th>Email</th>
-										<td><?= $profil['email'] ?></td>
-									</tr>
-									<tr>
-										<th>Full Name</th>
-										<td><?= $profil['nama_lengkap'] ?></td>
+										<td><?= $getRiwayat['email'] ?></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
-										<td><?= $profil['no_hp'] ?></td>
+										<td><?= $getRiwayat['no_hp'] ?></td>
 									</tr>
 									<tr>
-										<th>alamat</th>
-										<td><?= $profil['alamat'] ?></td>
+										<th>Alamat</th>
+										<td><?= $getRiwayat['alamat'] ?></td>
+									</tr>
+									<tr>
+										<th>Kode Modem</th>
+										<td><?= $getRiwayat['kode_modem'] ?></td>
+									</tr>
+									<tr>
+										<th>Tipe Modem</th>
+										<td><?= $getRiwayat['type_modem'] ?></td>
+									</tr>
+									<tr>
+										<th>Nama Modem</th>
+										<td><?= $getRiwayat['modem'] ?></td>
 									</tr>
 								</thead>
 							</table>
-							<h4>Bio</h4>
-							<hr>
-							<?= $profil['bio'] ?>
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-md-12 col-lg-7">
 					<div class="card">
-						<form method="post" enctype="multipart/form-data">
-							<div class="card-header">
-								<h4>Edit Profile</h4>
-							</div>
-							<div class="card-body">
-								<?php if ($this->session->flashdata('success')) : ?>
-									<div class="alert alert-success alert-dismissible fade show" role="alert">
-										<?= $this->session->flashdata('success'); ?>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-								<?php elseif ($this->session->flashdata('error')) : ?>
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										<?= $this->session->flashdata('error'); ?>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-								<?php endif; ?>
-								<div class="row">
-									<div class="col-12 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label>Username</label>
-											<input type="text" class="form-control" value="<?= set_value('username', $profil['username']) ?>" readonly>
-										</div>
-										<div class="form-group">
-											<label>Email</label><small class="text-danger"> *</small>
-											<input type="text" name="email" class="form-control <?= form_error('email') ? 'is-invalid' : '' ?>" value="<?= set_value('email', $profil['email']) ?>">
-											<div class="invalid-feedback"><?= form_error('email') ?></div>
-										</div>
-										<div class="form-group">
-											<label>Nama Lengkap</label><small class="text-danger"> *</small>
-											<input type="text" name="nama_lengkap" class="form-control <?= form_error('nama_lengkap') ? 'is-invalid' : '' ?>" value="<?= set_value('nama_lengkap', $profil['nama_lengkap']) ?>">
-											<div class="invalid-feedback"><?= form_error('nama_lengkap') ?></div>
-										</div>
-									</div>
-									<div class="col-12 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label>No Handphone</label><small class="text-danger"> *</small>
-											<input type="text" name="no_hp" class="form-control <?= form_error('no_hp') ? 'is-invalid' : '' ?>" value="<?= set_value('no_hp', $profil['no_hp']) ?>">
-											<div class="invalid-feedback"><?= form_error('no_hp') ?></div>
-										</div>
-										<div class="form-group">
-											<label>Alamat</label><small class="text-danger"> *</small>
-											<input type="text" name="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>" value="<?= set_value('alamat', $profil['alamat']) ?>">
-											<div class="invalid-feedback"><?= form_error('alamat') ?></div>
-										</div>
-										<div class="form-group">
-											<label>Password</label> <small class="text-primary">* Kosongkan jika tidak ingin diubah</small>
-											<input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
-											<div class="invalid-feedback"><?= form_error('password') ?></div>
-											<small type="button" id="showPassword" class="d-block" style="cursor: pointer">Lihat Password</small>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-12">
-										<label>Photo</label>
-										<input type="file" name="photo" class="form-control">
-										<img src="<?= base_url('assets/images/' . $profil['photo']) ?>" id="preview-img" class="img-fluid img-thumbnail mt-2" width="150">
-									</div>
-									<div class="form-group col-12">
-										<label>Bio</label>
-										<textarea style="height: 150px;" name="bio" class="form-control <?= form_error('bio') ? 'is-invalid' : '' ?>"><?= $profil['bio'] ?></textarea>
-										<div class="invalid-feedback"><?= form_error('bio') ?></div>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer text-right">
-								<button class="btn btn-primary">Simpan perubahan</button>
-							</div>
-						</form>
+						<div class="card-header">
+							<h4>Keluhan Pelanggan</h4>
+						</div>
+						<div class="card-body">
+								
+						</div>
 					</div>
 				</div>
 			</div>
