@@ -15,7 +15,17 @@ class Riwayat_model extends CI_Model
 	public function getJawaban($kode_riwayat)
 	{
 		$getRiwayat = $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array();
-		$arr = []
-		$getGejala = $this->db->get_where('tbl_gejala')
+		$getJawaban = $getRiwayat['jawaban'];
+		if ($getJawaban != "") {
+			$getKodeGejala = explode(",", $getJawaban);
+			$dataGejala = [];
+			foreach ($getKodeGejala as $kodeGejala) {
+				$getGejala = $this->db->get_where('tbl_gejala', ['kode_gejala' => $kodeGejala])->row_array();
+				array_push($dataGejala, $getGejala);
+			}
+			return $dataGejala;
+		}
+
+		return [];
 	}
 }

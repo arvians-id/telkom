@@ -11,7 +11,7 @@
 			<h2 class="section-title">Riwayat</h2>
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-5">
-					<div class="card profile-widget">
+					<div class="card profile-widget mt-0">
 						<div class="profile-widget-header">
 							<div class="profile-widget-items">
 								<div class="profile-widget-item">
@@ -51,6 +51,10 @@
 										<th>Nama Modem</th>
 										<td><?= $getRiwayat['modem'] ?></td>
 									</tr>
+									<tr>
+										<th>Tanggal Keluhan</th>
+										<td><?= $getRiwayat['created_at'] ?></td>
+									</tr>
 								</thead>
 							</table>
 						</div>
@@ -62,7 +66,23 @@
 							<h4>Keluhan Pelanggan</h4>
 						</div>
 						<div class="card-body">
-								
+							<h5>Gejala/Keluhan Pelanggan</h5>
+							<?php if ($getJawaban != null) : ?>
+								<ol>
+									<?php for ($i = 0; $i < count($getJawaban); $i++) : ?>
+										<?php if ($getJawaban[$i] != null) : ?>
+											<li><?= $getJawaban[$i]['kode_gejala'] . " - " . $getJawaban[$i]['gejala']  ?></li>
+										<?php else : ?>
+											<li class="text-danger">Gejala tidak ditemukan di database</li>
+										<?php endif; ?>
+									<?php endfor; ?>
+								</ol>
+							<?php else : ?>
+								Gejala atau keluhan tidak ditemukan
+							<?php endif; ?>
+							<h5>Solusi yang Diberikan</h5>
+							<p class="mb-0">Kode Solusi : <?= $getSolusi['kode_solusi'] . " - " . $getSolusi['judul'] ?></p>
+							<?= $getSolusi == null ? 'Solusi tidak ditemukan' : $getSolusi['solusi'] ?>
 						</div>
 					</div>
 				</div>

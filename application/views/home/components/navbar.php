@@ -40,8 +40,8 @@
 			<li class="nav-item <?= activeMenu(['sejarah']) ?>">
 				<a href="<?= base_url('home/sejarah') ?>" class="nav-link"><i class="fas fa-book-reader"></i><span>Sejarah PT Telkom</span></a>
 			</li>
-			<li class="nav-item <?= activeMenu(['sejarah']) ?>">
-				<a href="<?= base_url('home/sejarah') ?>" class="nav-link"><i class="fa fa-user"></i><span>Keluhan Pelanggan</span></a>
+			<li class="nav-item <?= activeMenu(['keluhan']) ?>">
+				<a href="<?= base_url('home/keluhan') ?>" class="nav-link"><i class="fa fa-user"></i><span>Keluhan Pelanggan</span></a>
 			</li>
 		</ul>
 	</div>

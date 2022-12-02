@@ -25,4 +25,12 @@ class Home extends CI_Controller
 		];
 		$this->load->view('home/layouts/app', $data);
 	}
+	public function keluhan()
+	{
+		$data = [
+			'judul' => 'Pengaduan/Keluhan Pelanggan',
+			'content' => 'home/contents/keluhan',
+		];
+		$this->load->view('home/layouts/app', $data);
+	}
 }
