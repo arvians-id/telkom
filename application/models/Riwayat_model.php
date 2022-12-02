@@ -28,4 +28,27 @@ class Riwayat_model extends CI_Model
 
 		return [];
 	}
+	public function simpanRiwayat()
+	{
+		$dataJawaban = $this->input->post('jawaban');
+		$jawaban = implode(",", $dataJawaban);
+		$data = [
+			'kode_riwayat' => $this->generateRandomString(3),
+			'kode_pelanggan' => $this->input->post('kode_pelanggan'),
+			'kode_modem' => $this->input->post('kode_modem'),
+			'jawaban' => $jawaban,
+			'created_at' => date('Y-m-d h:i:s'),
+		];
+		$this->db->insert('tbl_riwayat', $data);
+	}
+	public function generateRandomString($length = 10)
+	{
+		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
 }

@@ -7,6 +7,7 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Pelanggan_model', 'pelanggan_m');
+		$this->load->model('Riwayat_model', 'riwayat_m');
 	}
 	public function index()
 	{
@@ -27,10 +28,34 @@ class Home extends CI_Controller
 	}
 	public function keluhan()
 	{
-		$data = [
-			'judul' => 'Pengaduan/Keluhan Pelanggan',
-			'content' => 'home/contents/keluhan',
-		];
-		$this->load->view('home/layouts/app', $data);
+		$this->form_validation->set_rules('kode_pelanggan', 'Kode Pelanggan', 'required');
+		$this->form_validation->set_rules('kode_modem', 'Kode Modem', 'required');
+		$this->form_validation->set_rules('jawaban[]', 'Kode Keluhan', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data = [
+				'judul' => 'Pengaduan/Keluhan Pelanggan',
+				'content' => 'home/contents/keluhan',
+				'getModem' => $this->db->get('tbl_modem')->result_array(),
+				'getGejala' => $this->db->get('tbl_gejala')->result_array()
+			];
+			$this->load->view('home/layouts/app-input', $data);
+		} else {
+			$this->riwayat_m->simpanRiwayat();
+			$this->session->set_flashdata('success', 'Keluhan berhasil ditambahkan.');
+			redirect('home/keluhan');
+		}
+	}
+	public function checkVerifikasiPelanggan()
+	{
+		$kode_pelanggan = $this->input->post('kode_pelanggan');
+		$getPelanggan = $this->db->get_where('tbl_pelanggan', ['kode_pelanggan' => $kode_pelanggan])->row_array();
+		echo json_encode($getPelanggan);
+	}
+	public function checkVerifikasiModem()
+	{
+		$kode_modem = $this->input->post('kode_modem');
+		$getModem = $this->db->get_where('tbl_modem', ['kode_modem' => $kode_modem])->row_array();
+		echo json_encode($getModem);
 	}
 }

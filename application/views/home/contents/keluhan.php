@@ -4,69 +4,220 @@
 			<img src="<?= base_url('assets/layout/telkom.png') ?>" alt="logo" width="80" class="rounded-circle">
 			<h1>Telkom Akses</h1>
 		</div>
-
+		<?php if ($this->session->flashdata('success')) : ?>
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<?= $this->session->flashdata('success'); ?>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php elseif ($this->session->flashdata('error') || form_error('jawaban[]')) : ?>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<?php if (form_error('jawaban[]')) : ?>
+					<?= form_error('jawaban[]') ?>
+				<?php else : ?>
+					<?= $this->session->flashdata('error'); ?>
+				<?php endif; ?>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php endif; ?>
 		<div class="section-body">
 			<div class="card">
 				<div class="card-header">
-					<h4>Sejarah Telkom Group</h4>
+					<h4>Form Keluhan/Pengaduan Pelanggan</h4>
 				</div>
 				<div class="card-body">
-
-					<div class="text-center">
-						<img src="<?= base_url('assets/layout/sejarah-telkom.jpg') ?>" class="img-fluid" width="400" alt="">
-					</div>
-					<p>
-						<b>TENTANG TELKOMGROUP</b>
-						<br></br>
-						PT Telkom Indonesia (Persero) Tbk (Telkom) adalah Badan Usaha Milik Negara (BUMN) yang bergerak di bidang jasa layanan teknologi informasi dan komunikasi (TIK) dan jaringan telekomunikasi di Indonesia. Pemegang saham mayoritas Telkom adalah Pemerintah Republik Indonesia sebesar 52.09%, sedangkan 47.91% sisanya dikuasai oleh publik. Saham Telkom diperdagangkan di Bursa Efek Indonesia (BEI) dengan kode “TLKM” dan New York Stock Exchange (NYSE) dengan kode “TLK”.
-						<br><br>
-						Dalam upaya bertransformasi menjadi digital telecommunication company, TelkomGroup mengimplementasikan strategi bisnis dan operasional perusahaan yang berorientasi kepada pelanggan (customer-oriented). Transformasi tersebut akan membuat organisasi TelkomGroup menjadi lebih lean (ramping) dan agile (lincah) dalam beradaptasi dengan perubahan industri telekomunikasi yang berlangsung sangat cepat. Organisasi yang baru juga diharapkan dapat meningkatkan efisiensi dan efektivitas dalam menciptakan customer experience yang berkualitas.
-						<br><br>
-						Kegiatan usaha TelkomGroup bertumbuh dan berubah seiring dengan perkembangan teknologi, informasi dan digitalisasi, namun masih dalam koridor industri telekomunikasi dan informasi. Hal ini terlihat dari lini bisnis yang terus berkembang melengkapi legacy yang sudah ada sebelumnya.
-						<br><br>
-						Telkom mulai saat ini membagi bisnisnya menjadi 3 Digital Business Domain:
-						<br><br>
-						Digital Connectivity: Fiber to the x (FTTx), 5G, Software Defined Networking (SDN)/ Network Function Virtualization (NFV)/ Satellite
-						Digital Platform: Data Center, Cloud, Internet of Things (IoT), Big Data/ Artificial Intelligence (AI), Cybersecurity
-						Digital Services: Enterprise, Consumer
-						<br><br>
-						<b>PURPOSE, VISI DAN MISI</b>
-						<br>
-						Untuk menjawab tantangan industri digital, mendukung digitisasi nasional dan untuk menginternalisasi agenda transformasi, maka Telkom telah menajamkan kembali Purpose, Visi, dan Misi nya.
-						<br>
-						<b>PURPOSE</b>
-						<br>
-						Mewujudkan bangsa yang lebih sejahtera dan berdaya saing serta memberikan nilai tambah yang terbaik bagi para pemangku kepentingan.
-						<br>
-						<b>VISI</b>
-						<br>
-						Menjadi digital telco pilihan utama untuk memajukan masyarakat
-						<br>
-						<b>MISI</b>
-						<br>
-						Mempercepat pembangunan Infrastruktur dan platform digital cerdas yang berkelanjutan, ekonomis, dan dapat diakses oleh seluruh masyarakat.
-						Mengembangkan talenta digital unggulan yang membantu mendorong kemampuan digital dan tingkat adopsi digital bangsa.
-						Mengorkestrasi ekosistem digital untuk memberikan pengalaman digital pelanggan terbaik
-					</p>
+					<form action="" method="post" class="f1">
+						<div class="f1-steps text-center">
+							<div class="f1-progress">
+								<div class="f1-progress-line" data-now-value="25" data-number-of-steps="4" style="width: 25%;"></div>
+							</div>
+							<div class="f1-step active">
+								<div class="f1-step-icon text-center"><i class="fa fa-user"></i></div>
+								<p>Data Pelanggan</p>
+							</div>
+							<div class="f1-step">
+								<div class="f1-step-icon text-center"><i class="fas fa-wifi"></i></div>
+								<p>Jenis Modem</p>
+							</div>
+							<div class="f1-step">
+								<div class="f1-step-icon text-center"><i class="fas fa-question"></i></div>
+								<p>Keluhan</p>
+							</div>
+							<div class="f1-step">
+								<div class="f1-step-icon text-center"><i class="fas fa-key"></i></div>
+								<p>Penyesuaian</p>
+							</div>
+						</div>
+						<!-- step 1 -->
+						<fieldset>
+							<h4>Data Pelanggan</h4>
+							<div class="form-group">
+								<label>Kode Pelanggan</label>
+								<input type="text" name="kode_pelanggan" placeholder="contoh: 391294966325" class="form-control" value="<?= set_value('kode_pelanggan') ?>" required>
+								<button type="button" class="btn btn-primary mt-2" id="verifikasiPelanggan">Verifikasi Pelanggan</button>
+							</div>
+							<div class="form-group">
+								<label>Nama</label>
+								<input type="text" name="nama" class="form-control" value="<?= set_value('nama') ?>" readonly required>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="text" name="email" class="form-control" value="<?= set_value('email') ?>" readonly required>
+							</div>
+							<div class="form-group">
+								<label>No Handphone</label>
+								<input type="text" name="no_hp" class="form-control" value="<?= set_value('no_hp') ?>" readonly required>
+							</div>
+							<div class="form-group">
+								<label>Alamat</label>
+								<input type="text" name="alamat" class="form-control" value="<?= set_value('alamat') ?>" readonly required>
+							</div>
+							<div class="f1-buttons">
+								<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+							</div>
+						</fieldset>
+						<!-- step 2 -->
+						<fieldset>
+							<h4>Data Modem</h4>
+							<div class="form-group">
+								<label>Kode Modem</label>
+								<select name="kode_modem" class="form-control" id="verifikasiModem" required>
+									<option value="" selected disabled>Pilih...</option>
+									<?php foreach ($getModem as $modem) : ?>
+										<option value="<?= $modem['kode_modem'] ?>" <?= set_value('kode_modem') == $modem['kode_modem'] ? 'selected' : '' ?>><?= $modem['modem'] ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Tipe Modem</label>
+								<input type="text" name="type_modem" class="form-control" value="<?= set_value('type_modem') ?>" readonly required>
+							</div>
+							<div class="form-group">
+								<label>Nama Modem</label>
+								<input type="text" name="modem" class="form-control" value="<?= set_value('modem') ?>" readonly required>
+							</div>
+							<div class="f1-buttons">
+								<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
+								<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+							</div>
+						</fieldset>
+						<!-- step 3 -->
+						<fieldset>
+							<h4>Keluhan Pelanggan</h4>
+							<?php foreach ($getGejala as $gejala) : ?>
+								<div class="form-check">
+									<input class="form-check-input" name="jawaban[]" type="checkbox" data-fullgejala="<?= $gejala['kode_gejala'] . "," . $gejala['gejala'] ?>" value="<?= $gejala['kode_gejala'] ?>" id="<?= $gejala['kode_gejala'] ?>">
+									<label class="form-check-label" for="<?= $gejala['kode_gejala'] ?>">
+										<?= $gejala['gejala'] ?>
+									</label>
+								</div>
+							<?php endforeach; ?>
+							<div class="f1-buttons">
+								<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
+								<button type="button" id="from-gejala" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+							</div>
+						</fieldset>
+						<!-- step 4 -->
+						<fieldset>
+							<h4>Penyesuaian Keluhan</h4>
+							<div class="empty-state">
+								<div class="empty-state-icon">
+									<i class="fas fa-key"></i>
+								</div>
+								<h2 id="kode-pelanggan">Kode Pelanggan - Nama Pelanggan</h2>
+								<div class="profile-widget-description">
+									<div class="profile-widget-name" id="kode-modem">kode modem
+										<div class="text-muted d-inline font-weight-normal">
+											<div class="slash"></div> modem
+										</div>
+									</div>
+									<p class="font-weight-bold mt-2">Keluhan Anda</p>
+									<table class="table table-responsive mt-3">
+										<thead id="penyesuaian-keluhan">
+											<tr>
+												<th>Kode</th>
+												<td>Gejala/Keluhan</td>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<div class="f1-buttons">
+									<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Kembali</button>
+									<button type="submit" class="btn btn-primary btn-submit"><i class="fa fa-save"></i> Selesai</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<img src="" id="image" class="img-fluid">
-			</div>
-		</div>
-	</div>
-</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+	$(function() {
+		$('#verifikasiPelanggan').on('click', function() {
+			$.ajax({
+				type: 'POST',
+				url: '<?= base_url() ?>/home/checkVerifikasiPelanggan',
+				dataType: "json",
+				data: {
+					kode_pelanggan: $('input[name="kode_pelanggan"]').val()
+				},
+				success: function(data) {
+					let popup = data == null ? "Pelanggan tidak ditemukan" : "Pelanggan berhasil ditemukan!"
+					if (data != null) {
+						$('input[name="nama"]').val(data["nama"])
+						$('input[name="email"]').val(data["email"])
+						$('input[name="no_hp"]').val(data["no_hp"])
+						$('input[name="alamat"]').val(data["alamat"])
+
+						$('#kode-pelanggan').html(data["nama"] + " - " + data["kode_pelanggan"])
+					}
+					alert(popup);
+				},
+			})
+		})
+
+		$('#from-gejala').on('click', function() {
+			let arr = []
+			$("input:checkbox[name='jawaban[]']:checked").each(function() {
+				arr.push($(this).data('fullgejala'));
+			});
+			let str = ""
+			for (let i = 0; i < arr.length; i++) {
+				let splitGejala = arr[i].split(",")
+				str += `<tr>
+							<th>${splitGejala[0]}</th>
+							<td>${splitGejala[1]}</td>
+						</tr>`
+			}
+			$('#penyesuaian-keluhan').html(str)
+		})
+
+		$('#verifikasiModem').on('change', function() {
+			$.ajax({
+				type: 'POST',
+				url: '<?= base_url() ?>/home/checkVerifikasiModem',
+				dataType: "json",
+				data: {
+					kode_modem: $('select[name="kode_modem"] option').filter(':selected').val()
+				},
+				success: function(data) {
+					if (data != null) {
+						$('input[name="type_modem"]').val(data["type_modem"])
+						$('input[name="modem"]').val(data["modem"])
+
+						$('#kode-modem').html(`${data['modem']} <div class="text-muted d-inline font-weight-normal">
+											<div class="slash"></div> ${data['kode_modem']} 
+										</div>`)
+					}
+				},
+			})
+		})
+	})
+</script>
