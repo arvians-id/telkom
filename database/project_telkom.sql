@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 03, 2022 at 11:15 AM
+-- Generation Time: Dec 03, 2022 at 06:56 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.33
 
@@ -143,7 +143,19 @@ INSERT INTO `tbl_riwayat` (`id_riwayat`, `kode_riwayat`, `kode_pelanggan`, `kode
 (6, '291', '324549375826', 'XX1', '', NULL, '2022-12-03 18:52:20'),
 (7, 'RNL', '391294966325', 'VV1', 'CC1', NULL, '2022-12-03 19:02:39'),
 (8, 'T1B', '391294966325', 'XX1', '', NULL, '2022-12-03 19:13:20'),
-(9, '60R', '391294966325', 'VV1', 'CC1', NULL, '2022-12-03 19:13:47');
+(9, '60R', '391294966325', 'VV1', 'CC1', NULL, '2022-12-03 19:13:47'),
+(10, 'WDY', '391294966325', 'XX1', 'CC1,CCS', NULL, '2022-12-02 23:34:08'),
+(11, '83N', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:36:05'),
+(12, '60C', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:38:11'),
+(13, 'V6X', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:40:47'),
+(14, 'KJH', '391294966325', 'VV1', 'CCS', NULL, '2022-12-02 23:41:38'),
+(15, '5D5', '391294966325', 'XX1', 'CC1,CCS', NULL, '2022-12-02 23:42:07'),
+(16, 'SO7', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:42:29'),
+(17, 'AM3', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:51:33'),
+(18, 'SV2', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:51:49'),
+(19, '8LQ', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:52:24'),
+(20, 'DRF', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:52:59'),
+(21, 'Y4X', '391294966325', 'XX1', 'CCS', NULL, '2022-12-02 23:54:20');
 
 -- --------------------------------------------------------
 
@@ -164,7 +176,8 @@ CREATE TABLE `tbl_rules` (
 
 INSERT INTO `tbl_rules` (`id_rules`, `kode_rules`, `kode_solusi_rules`, `kode_gejala_rules`) VALUES
 (2, 'R1', 'CC1', 'CC1,CCS'),
-(3, 'R2', 'CC1', 'CCS');
+(3, 'R2', 'S1', 'CCS'),
+(4, 'R3', 'S2', 'CC1');
 
 -- --------------------------------------------------------
 
@@ -306,13 +319,16 @@ ALTER TABLE `tbl_riwayat`
 -- Indexes for table `tbl_rules`
 --
 ALTER TABLE `tbl_rules`
-  ADD PRIMARY KEY (`id_rules`);
+  ADD PRIMARY KEY (`id_rules`),
+  ADD UNIQUE KEY `kode_rules` (`kode_rules`) USING BTREE,
+  ADD KEY `kode_solusi_rules` (`kode_solusi_rules`);
 
 --
 -- Indexes for table `tbl_solusi`
 --
 ALTER TABLE `tbl_solusi`
-  ADD PRIMARY KEY (`id_solusi`);
+  ADD PRIMARY KEY (`id_solusi`),
+  ADD UNIQUE KEY `kode_solusi` (`kode_solusi`);
 
 --
 -- Indexes for table `tbl_status`
@@ -365,13 +381,13 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT for table `tbl_riwayat`
 --
 ALTER TABLE `tbl_riwayat`
-  MODIFY `id_riwayat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_riwayat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_rules`
 --
 ALTER TABLE `tbl_rules`
-  MODIFY `id_rules` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_rules` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_solusi`
@@ -401,6 +417,12 @@ ALTER TABLE `tbl_pelanggan`
 ALTER TABLE `tbl_riwayat`
   ADD CONSTRAINT `tbl_riwayat_ibfk_1` FOREIGN KEY (`kode_modem`) REFERENCES `tbl_modem` (`kode_modem`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_riwayat_ibfk_2` FOREIGN KEY (`kode_pelanggan`) REFERENCES `tbl_pelanggan` (`kode_pelanggan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `tbl_rules`
+--
+ALTER TABLE `tbl_rules`
+  ADD CONSTRAINT `tbl_rules_ibfk_1` FOREIGN KEY (`kode_solusi_rules`) REFERENCES `tbl_solusi` (`kode_solusi`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_status_pelanggan`

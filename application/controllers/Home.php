@@ -41,8 +41,9 @@ class Home extends CI_Controller
 			];
 			$this->load->view('home/layouts/app-input', $data);
 		} else {
-			$this->riwayat_m->simpanRiwayat();
-			$this->session->set_flashdata('success', 'Keluhan berhasil ditambahkan.');
+			$kode_riwayat = $this->riwayat_m->simpanRiwayat();
+			$result = $this->riwayat_m->getForwardChaining($kode_riwayat);
+			$this->session->set_flashdata('success', 'Keluhan berhasil ditambahkan. Kode Solusi :' . $result['solusi']);
 			redirect('home/keluhan');
 		}
 	}

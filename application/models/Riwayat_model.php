@@ -39,14 +39,16 @@ class Riwayat_model extends CI_Model
 			}
 		}
 		$jawaban = implode(",", $resultJawaban);
+		$kode_riwayat = $this->generateRandomString(3);
 		$data = [
-			'kode_riwayat' => $this->generateRandomString(3),
+			'kode_riwayat' => $kode_riwayat,
 			'kode_pelanggan' => $this->input->post('kode_pelanggan'),
 			'kode_modem' => $this->input->post('kode_modem'),
 			'jawaban' => $jawaban,
 			'created_at' => date('Y-m-d h:i:s'),
 		];
 		$this->db->insert('tbl_riwayat', $data);
+		return $kode_riwayat;
 	}
 	public function generateRandomString($length = 10)
 	{
@@ -57,5 +59,43 @@ class Riwayat_model extends CI_Model
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
 		return $randomString;
+	}
+	public function getForwardChaining($kode_riwayat)
+	{
+		// Riwayat
+		$getRiwayat = $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array();
+		if ($getRiwayat['jawaban'] != "") {
+			$getJawaban = explode(',', $getRiwayat['jawaban']);
+
+			// Rules
+			$getRules = $this->db->get_where('tbl_rules')->result_array();
+
+			// Logic Forward Chaining
+			for ($i = 0; $i < count($getRules); $i++) {
+				$isExists = 0;
+				$getGejala = explode(',', $getRules[$i]['kode_gejala_rules']);
+				for ($k = 0; $k < count($getJawaban); $k++) {
+					for ($j = 0; $j < count($getGejala); $j++) {
+						if ($getJawaban[$k] == $getGejala[$j]) {
+							$isExists++;
+							break;
+						}
+					}
+				}
+				if ($isExists == count($getGejala)) {
+					// get data solusi with relation
+					$this->db->select('*');
+					$this->db->from('tbl_rules r');
+					$this->db->join('tbl_solusi s', 'r.kode_solusi_rules = s.kode_solusi');
+					$this->db->where('r.kode_solusi_rules', $getRules[$i]['kode_solusi_rules']);
+
+					// get data gejala
+
+					return $this->db->get()->row_array();
+				}
+			}
+
+			return "Kode solusi tidak ditemukan";
+		}
 	}
 }
