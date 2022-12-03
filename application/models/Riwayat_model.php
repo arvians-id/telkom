@@ -9,6 +9,7 @@ class Riwayat_model extends CI_Model
 		$this->db->from('tbl_riwayat r');
 		$this->db->join('tbl_pelanggan p', 'r.kode_pelanggan = p.kode_pelanggan');
 		$this->db->join('tbl_modem m', 'm.kode_modem = r.kode_modem');
+		$this->db->where('r.kode_riwayat', $kode_riwayat);
 
 		return $this->db->get()->row_array();
 	}
@@ -31,7 +32,13 @@ class Riwayat_model extends CI_Model
 	public function simpanRiwayat()
 	{
 		$dataJawaban = $this->input->post('jawaban');
-		$jawaban = implode(",", $dataJawaban);
+		$resultJawaban = [];
+		foreach ($dataJawaban as $jawaban) {
+			if ($jawaban != "undefined") {
+				array_push($resultJawaban, $jawaban);
+			}
+		}
+		$jawaban = implode(",", $resultJawaban);
 		$data = [
 			'kode_riwayat' => $this->generateRandomString(3),
 			'kode_pelanggan' => $this->input->post('kode_pelanggan'),

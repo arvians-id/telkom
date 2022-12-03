@@ -10,7 +10,7 @@
 		<div class="section-body">
 			<h2 class="section-title">Riwayat</h2>
 			<div class="row mt-sm-4">
-				<div class="col-12 col-md-12 col-lg-5">
+				<div class="col-12 col-md-12 col-lg-6">
 					<div class="card profile-widget mt-0">
 						<div class="profile-widget-header">
 							<div class="profile-widget-items">
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-md-12 col-lg-7">
+				<div class="col-12 col-md-12 col-lg-6">
 					<div class="card">
 						<div class="card-header">
 							<h4>Keluhan Pelanggan</h4>
@@ -81,7 +81,9 @@
 								Gejala atau keluhan tidak ditemukan
 							<?php endif; ?>
 							<h5>Solusi yang Diberikan</h5>
-							<p class="mb-0">Kode Solusi : <?= $getSolusi['kode_solusi'] . " - " . $getSolusi['judul'] ?></p>
+							<?php if ($getSolusi != null) : ?>
+								<p class="mb-0">Kode Solusi : <?= $getSolusi['kode_solusi'] . " - " . $getSolusi['judul'] ?></p>
+							<?php endif; ?>
 							<?= $getSolusi == null ? 'Solusi tidak ditemukan' : $getSolusi['solusi'] ?>
 						</div>
 					</div>

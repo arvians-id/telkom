@@ -29,7 +29,7 @@
 					<h4>Form Keluhan/Pengaduan Pelanggan</h4>
 				</div>
 				<div class="card-body">
-					<form action="" method="post" class="f1">
+					<form method="post" class="f1">
 						<div class="f1-steps text-center">
 							<div class="f1-progress">
 								<div class="f1-progress-line" data-now-value="25" data-number-of-steps="4" style="width: 25%;"></div>
@@ -76,7 +76,7 @@
 								<input type="text" name="alamat" class="form-control" value="<?= set_value('alamat') ?>" readonly required>
 							</div>
 							<div class="f1-buttons">
-								<button type="button" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
+								<button type="button" id="test" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
 							</div>
 						</fieldset>
 						<!-- step 2 -->
@@ -107,14 +107,21 @@
 						<!-- step 3 -->
 						<fieldset>
 							<h4>Keluhan Pelanggan</h4>
-							<?php foreach ($getGejala as $gejala) : ?>
-								<div class="form-check">
-									<input class="form-check-input" name="jawaban[]" type="checkbox" data-fullgejala="<?= $gejala['kode_gejala'] . "," . $gejala['gejala'] ?>" value="<?= $gejala['kode_gejala'] ?>" id="<?= $gejala['kode_gejala'] ?>">
-									<label class="form-check-label" for="<?= $gejala['kode_gejala'] ?>">
-										<?= $gejala['gejala'] ?>
-									</label>
+							<?php $no = 0;
+							foreach ($getGejala as $gejala) : ?>
+								<div class="form-group text-center">
+									<h6 class="d-block"><?= $gejala['gejala'] ?></h6>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="jawaban[<?= $no ?>]" type="radio" id="<?= $gejala['kode_gejala'] . "1" ?>" value="<?= $gejala['kode_gejala'] ?>" data-fullgejala="<?= $gejala['kode_gejala'] . "," . $gejala['gejala'] ?>">
+										<label class="form-check-label" for="<?= $gejala['kode_gejala'] . "1" ?>">Ya</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="jawaban[<?= $no ?>]" type="radio" id="<?= $gejala['kode_gejala'] . "2" ?>" value="undefined" data-fullgejala="">
+										<label class="form-check-label" for="<?= $gejala['kode_gejala'] . "2" ?>">Tidak</label>
+									</div>
 								</div>
-							<?php endforeach; ?>
+							<?php $no++;
+							endforeach; ?>
 							<div class="f1-buttons">
 								<button type="button" class="btn btn-warning btn-previous"><i class="fa fa-arrow-left"></i> Sebelumnya</button>
 								<button type="button" id="from-gejala" class="btn btn-primary btn-next">Selanjutnya <i class="fa fa-arrow-right"></i></button>
@@ -177,6 +184,13 @@
 						$('input[name="alamat"]').val(data["alamat"])
 
 						$('#kode-pelanggan').html(data["nama"] + " - " + data["kode_pelanggan"])
+					} else {
+						$('input[name="nama"]').val("")
+						$('input[name="email"]').val("")
+						$('input[name="no_hp"]').val("")
+						$('input[name="alamat"]').val("")
+
+						$('#kode-pelanggan').html("Kode Pelanggan Tidak Ditemukan!")
 					}
 					alert(popup);
 				},
@@ -184,9 +198,11 @@
 		})
 
 		$('#from-gejala').on('click', function() {
-			let arr = []
-			$("input:checkbox[name='jawaban[]']:checked").each(function() {
-				arr.push($(this).data('fullgejala'));
+			let arr = [];
+			$(".form-check-input:checked").each(function() {
+				if ($(this).data('fullgejala') != "") {
+					arr.push($(this).data('fullgejala'));
+				}
 			});
 			let str = ""
 			for (let i = 0; i < arr.length; i++) {
@@ -195,6 +211,9 @@
 							<th>${splitGejala[0]}</th>
 							<td>${splitGejala[1]}</td>
 						</tr>`
+			}
+			if (str == "") {
+				str = "Anda tidak mengeluhkan apapun disini! Silahkan kembali lagi."
 			}
 			$('#penyesuaian-keluhan').html(str)
 		})
