@@ -50,6 +50,11 @@ class Riwayat_model extends CI_Model
 		$this->db->insert('tbl_riwayat', $data);
 		return $kode_riwayat;
 	}
+	public function updateRiwayat($data)
+	{
+		$this->db->where('kode_riwayat', $data['kode_riwayat']);
+		$this->db->update('tbl_riwayat', $data);
+	}
 	public function generateRandomString($length = 10)
 	{
 		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';

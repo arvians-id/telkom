@@ -29,9 +29,13 @@
 				</div>
 				<div class="collapse show" id="mycard-collapse">
 					<div class="card-body text-center">
-						<p>Adapun solusinya, sebagai berikut.</p>
-						<h5><?= $getSolusi['judul'] ?></h5>
-						<h6><?= $getSolusi['solusi'] ?></h6>
+						<?php if ($getSolusi != "Kode solusi tidak ditemukan") : ?>
+							<p>Adapun solusinya, sebagai berikut.</p>
+							<h5><?= $getSolusi['judul'] ?></h5>
+							<h6><?= $getSolusi['solusi'] ?></h6>
+						<?php else : ?>
+							<p>Maaf, solusi tidak ditemukan.</p>
+						<?php endif; ?>
 						<a href="<?= base_url() ?>home/keluhan" class="btn btn-primary"><i class="fas fa-sync-alt"></i> Konsultasi ulang</a>
 					</div>
 				</div>

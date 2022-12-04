@@ -63,7 +63,14 @@ class Home extends CI_Controller
 				'getJawaban' => $this->riwayat_m->getJawaban($kode_riwayat),
 				'getFalseGejala' => $this->gejala_m->getFalseGejala($kode_riwayat),
 			];
-			$this->session->unset_userdata('kode_riwayat');
+			if ($data['getSolusi'] != "Kode solusi tidak ditemukan") {
+				$dataUpdate = [
+					'kode_riwayat' => $kode_riwayat,
+					'kode_solusi' => $data['getSolusi']['kode_solusi'],
+				];
+				$this->riwayat_m->updateRiwayat($dataUpdate);
+			}
+			// $this->session->unset_userdata('kode_riwayat');
 			$this->load->view('home/layouts/app', $data);
 		} else {
 			$this->session->set_flashdata('error', 'Sesi anda berakhir atau anda belum mengisi form pengaduan/keluhan');
