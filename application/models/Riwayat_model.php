@@ -89,8 +89,6 @@ class Riwayat_model extends CI_Model
 					$this->db->join('tbl_solusi s', 'r.kode_solusi_rules = s.kode_solusi');
 					$this->db->where('r.kode_solusi_rules', $getRules[$i]['kode_solusi_rules']);
 
-					// get data gejala
-
 					return $this->db->get()->row_array();
 				}
 			}

@@ -22,4 +22,19 @@ class Gejala_model extends CI_Model
 		$this->db->where('kode_gejala', $kode_gejala);
 		$this->db->update('tbl_gejala', $data);
 	}
+	public function getFalseGejala($kode_riwayat)
+	{
+		$getRiwayat = $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array();
+		$getGejala = $this->db->get('tbl_gejala')->result_array();
+		$arrJawaban = explode(',', $getRiwayat['jawaban']);
+
+		$falseGejala = [];
+		for ($i = 0; $i < count($getGejala); $i++) {
+			if (!in_array($getGejala[$i]['kode_gejala'], $arrJawaban)) {
+				$falseGejala[] = $getGejala[$i];
+			}
+		}
+
+		return $falseGejala;
+	}
 }

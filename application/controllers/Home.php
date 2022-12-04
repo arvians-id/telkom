@@ -8,6 +8,7 @@ class Home extends CI_Controller
 		parent::__construct();
 		$this->load->model('Pelanggan_model', 'pelanggan_m');
 		$this->load->model('Riwayat_model', 'riwayat_m');
+		$this->load->model('Gejala_model', 'gejala_m');
 	}
 	public function index()
 	{
@@ -41,9 +42,31 @@ class Home extends CI_Controller
 			];
 			$this->load->view('home/layouts/app-input', $data);
 		} else {
-			$kode_riwayat = $this->riwayat_m->simpanRiwayat();
-			$result = $this->riwayat_m->getForwardChaining($kode_riwayat);
-			$this->session->set_flashdata('success', 'Keluhan berhasil ditambahkan. Kode Solusi :' . $result['solusi']);
+			$kode_riwayat['kode_riwayat'] = $this->riwayat_m->simpanRiwayat();
+			$data = [
+				'judul' => 'Hasil Pengaduan/Keluhan Pelanggan',
+				'content' => 'home/contents/result'
+			];
+			$this->session->set_userdata($kode_riwayat);
+			$this->session->set_flashdata('success', 'Data keluhan/pengaduan berhasil disimpan, silahkan cek hasilnya dibawah ini.');
+			redirect('home/result');
+		}
+	}
+	public function result()
+	{
+		$kode_riwayat = $this->session->userdata('kode_riwayat');
+		if ($kode_riwayat) {
+			$data = [
+				'judul' => 'Hasil Pengaduan/Keluhan Pelanggan',
+				'content' => 'home/contents/result',
+				'getSolusi' => $this->riwayat_m->getForwardChaining($kode_riwayat),
+				'getJawaban' => $this->riwayat_m->getJawaban($kode_riwayat),
+				'getFalseGejala' => $this->gejala_m->getFalseGejala($kode_riwayat),
+			];
+			$this->session->unset_userdata('kode_riwayat');
+			$this->load->view('home/layouts/app', $data);
+		} else {
+			$this->session->set_flashdata('error', 'Sesi anda berakhir atau anda belum mengisi form pengaduan/keluhan');
 			redirect('home/keluhan');
 		}
 	}
