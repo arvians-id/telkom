@@ -67,6 +67,7 @@ class Riwayat_model extends CI_Model
 	}
 	public function getForwardChaining($kode_riwayat)
 	{
+		// Logic Forward Chaining
 		// Riwayat
 		$getRiwayat = $this->db->get_where('tbl_riwayat', ['kode_riwayat' => $kode_riwayat])->row_array();
 		if ($getRiwayat['jawaban'] != "") {
@@ -74,8 +75,6 @@ class Riwayat_model extends CI_Model
 
 			// Rules
 			$getRules = $this->db->get_where('tbl_rules')->result_array();
-
-			// Logic Forward Chaining
 			for ($i = 0; $i < count($getRules); $i++) {
 				$isExists = 0;
 				$getGejala = explode(',', $getRules[$i]['kode_gejala_rules']);
@@ -87,12 +86,14 @@ class Riwayat_model extends CI_Model
 						}
 					}
 				}
-				if ($isExists == count($getGejala)) {
+				if ($isExists == count($getGejala) && $isExists == count($getJawaban)) {
 					// get data solusi with relation
 					$this->db->select('*');
 					$this->db->from('tbl_rules r');
 					$this->db->join('tbl_solusi s', 'r.kode_solusi_rules = s.kode_solusi');
 					$this->db->where('r.kode_solusi_rules', $getRules[$i]['kode_solusi_rules']);
+					// var_dump($isExists, $getRules[$i]['kode_rules'],$getGejala);
+					// die;
 
 					return $this->db->get()->row_array();
 				}

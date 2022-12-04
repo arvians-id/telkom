@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 03, 2022 at 06:56 PM
+-- Generation Time: Dec 04, 2022 at 05:36 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.33
 
@@ -40,8 +40,21 @@ CREATE TABLE `tbl_gejala` (
 --
 
 INSERT INTO `tbl_gejala` (`id_gejala`, `kode_gejala`, `gejala`, `created_at`, `updated_at`) VALUES
-(2, 'CC1', 'Enim vel in aut offi', '2022-11-30 20:27:19', '2022-11-30 20:30:49'),
-(3, 'CCS', 'Beatae aliqua Solut', '2022-11-30 21:59:44', '2022-11-30 21:59:44');
+(1, 'E001', 'Pohon Tumbang', '2022-12-03 22:06:16', '2022-12-03 22:06:16'),
+(2, 'E002', 'Tergigit Tikus', '2022-12-03 22:06:31', '2022-12-03 22:06:31'),
+(3, 'E003', 'Tertarik Mobil Truck', '2022-12-03 22:06:46', '2022-12-03 22:06:46'),
+(4, 'E004', 'Gesekan Layangan', '2022-12-03 22:07:01', '2022-12-03 22:07:01'),
+(5, 'E005', 'Terjepit Lemari', '2022-12-03 22:07:14', '2022-12-03 22:07:14'),
+(6, 'E006', 'Terjepit Pintu', '2022-12-03 22:07:26', '2022-12-03 22:07:26'),
+(7, 'E007', 'Kabel Terjepit, Terlilit', '2022-12-03 22:07:45', '2022-12-03 22:07:45'),
+(8, 'E008', 'Konektor Kotor', '2022-12-03 22:08:11', '2022-12-03 22:08:11'),
+(9, 'E009', 'Konektor Pecah', '2022-12-03 22:08:18', '2022-12-03 22:08:18'),
+(10, 'E010', 'Pon Blinking', '2022-12-03 22:08:37', '2022-12-03 22:08:37'),
+(11, 'E011', 'Terlindas Kendaraan', '2022-12-03 22:08:44', '2022-12-03 22:08:44'),
+(12, 'E012', 'Port ONT Kotor', '2022-12-03 22:09:01', '2022-12-03 22:09:01'),
+(13, 'E013', 'Pact Core Terjepit', '2022-12-03 22:09:13', '2022-12-03 22:09:13'),
+(14, 'E014', 'Digigit Semut', '2022-12-03 22:09:24', '2022-12-03 22:09:24'),
+(15, 'E015', 'Adapter ONT', '2022-12-03 22:09:36', '2022-12-03 22:09:36');
 
 -- --------------------------------------------------------
 
@@ -63,8 +76,9 @@ CREATE TABLE `tbl_modem` (
 --
 
 INSERT INTO `tbl_modem` (`id_modem`, `kode_modem`, `type_modem`, `modem`, `created_at`, `updated_at`) VALUES
-(2, 'VV1', 'HG8145V5', 'Huawei', '2022-11-30 20:40:33', '2022-11-30 20:41:25'),
-(3, 'XX1', 'HFAX7V', 'ZTE', '2022-12-03 17:31:08', '2022-12-03 17:31:08');
+(1, 'M01', 'HG6145F', 'Fiber Home', '2022-12-03 22:24:05', '2022-12-03 22:24:05'),
+(2, 'M02', 'F670L', 'ZTE', '2022-12-03 22:24:16', '2022-12-03 22:24:16'),
+(3, 'M03', 'HG8145V5', 'Huawei', '2022-12-03 22:24:27', '2022-12-03 22:24:27');
 
 -- --------------------------------------------------------
 
@@ -75,7 +89,7 @@ INSERT INTO `tbl_modem` (`id_modem`, `kode_modem`, `type_modem`, `modem`, `creat
 CREATE TABLE `tbl_paket` (
   `id_paket` int NOT NULL,
   `paket` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_paket`
@@ -104,7 +118,7 @@ CREATE TABLE `tbl_pelanggan` (
   `photo_selfie` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_pelanggan`
@@ -136,26 +150,14 @@ CREATE TABLE `tbl_riwayat` (
 --
 
 INSERT INTO `tbl_riwayat` (`id_riwayat`, `kode_riwayat`, `kode_pelanggan`, `kode_modem`, `jawaban`, `kode_solusi`, `created_at`) VALUES
-(1, 'KR1', '755086942298', 'VV1', 'CC1,CCS', NULL, '2022-12-01 08:55:51'),
-(3, 'NT6', '755086942298', 'XX1', 'CC1', NULL, '2022-12-03 17:41:28'),
-(4, '4VP', '324549375826', 'VV1', 'CC1', NULL, '2022-12-03 18:51:11'),
-(5, 'XIK', '324549375826', 'VV1', 'CC1,CCS', NULL, '2022-12-03 18:51:58'),
-(6, '291', '324549375826', 'XX1', '', NULL, '2022-12-03 18:52:20'),
-(7, 'RNL', '391294966325', 'VV1', 'CC1', NULL, '2022-12-03 19:02:39'),
-(8, 'T1B', '391294966325', 'XX1', '', NULL, '2022-12-03 19:13:20'),
-(9, '60R', '391294966325', 'VV1', 'CC1', NULL, '2022-12-03 19:13:47'),
-(10, 'WDY', '391294966325', 'XX1', 'CC1,CCS', NULL, '2022-12-02 23:34:08'),
-(11, '83N', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:36:05'),
-(12, '60C', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:38:11'),
-(13, 'V6X', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:40:47'),
-(14, 'KJH', '391294966325', 'VV1', 'CCS', NULL, '2022-12-02 23:41:38'),
-(15, '5D5', '391294966325', 'XX1', 'CC1,CCS', NULL, '2022-12-02 23:42:07'),
-(16, 'SO7', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:42:29'),
-(17, 'AM3', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:51:33'),
-(18, 'SV2', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:51:49'),
-(19, '8LQ', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:52:24'),
-(20, 'DRF', '391294966325', 'VV1', 'CC1', NULL, '2022-12-02 23:52:59'),
-(21, 'Y4X', '391294966325', 'XX1', 'CCS', NULL, '2022-12-02 23:54:20');
+(1, '787', '391294966325', 'M02', 'E003,E004,E008,E011,E012,E015', NULL, '2022-12-03 22:25:32'),
+(2, 'ZG4', '391294966325', 'M02', 'E009,E010,E012', 'G004', '2022-12-03 22:26:33'),
+(3, '3VD', '391294966325', 'M01', 'E001,E002,E003,E004,E005,E006,E007,E014,E015', 'G001', '2022-12-03 22:27:42'),
+(4, 'N7C', '391294966325', 'M03', 'E007,E008,E009,E010,E011,E012,E013', 'G002', '2022-12-03 22:29:01'),
+(5, '6FZ', '391294966325', 'M01', 'E009,E010,E011,E012', 'G003', '2022-12-03 22:29:46'),
+(6, '5P2', '391294966325', 'M02', 'E003,E006,E008,E010,E012,E015', NULL, '2022-12-03 22:30:18'),
+(7, 'ZMK', '391294966325', 'M01', 'E003,E004,E005', NULL, '2022-12-03 22:30:42'),
+(8, 'GD0', '391294966325', 'M01', 'E001,E003,E012,E013,E014,E015', NULL, '2022-12-03 22:33:30');
 
 -- --------------------------------------------------------
 
@@ -175,9 +177,10 @@ CREATE TABLE `tbl_rules` (
 --
 
 INSERT INTO `tbl_rules` (`id_rules`, `kode_rules`, `kode_solusi_rules`, `kode_gejala_rules`) VALUES
-(2, 'R1', 'CC1', 'CC1,CCS'),
-(3, 'R2', 'S1', 'CCS'),
-(4, 'R3', 'S2', 'CC1');
+(1, 'R1', 'G001', 'E001,E002,E003,E004,E005,E006,E007,E014,E015'),
+(2, 'R2', 'G002', 'E007,E008,E009,E010,E011,E012,E013'),
+(3, 'R3', 'G003', 'E009,E010,E011,E012'),
+(4, 'R4', 'G004', 'E009,E010,E012');
 
 -- --------------------------------------------------------
 
@@ -199,9 +202,10 @@ CREATE TABLE `tbl_solusi` (
 --
 
 INSERT INTO `tbl_solusi` (`id_solusi`, `kode_solusi`, `judul`, `solusi`, `created_at`, `updated_at`) VALUES
-(1, 'CC1', 'Itaque reprehenderit', 'Minima vel omnis qua', '2022-11-30 21:17:55', '2022-11-30 21:17:55'),
-(2, 'S1', 'Sint non magni ipsam', '<p>asd<br></p>', '2022-12-01 01:23:01', '2022-12-01 01:23:01'),
-(3, 'S2', 'Ut non odit aute per', '<ol><li>asdasd</li><li>asdasd</li><li>fdsssf<br></li></ol>', '2022-12-01 01:24:49', '2022-12-01 01:24:49');
+(1, 'G001', 'Kabel Fiber Optik Putus', '<ol><li>Melakukan Instalasi Kabel Rumah (IKR) Sesuai standar</li><li>Melalui jalur udara yag tidak terlalu tinggi dan sejajar dengan kabel udara yang sudah terpasang</li><li>Tentukan terebih dahulu jalur kabel yang aman sebelum IKR</li><li>Penarikan kabel secara perlahan jangan terburu-buru lihat alur segmen persegmennya</li><li>Gunakan sambungan konektor yang berkualitas jangan yang pecah dalemnya<br></li></ol>', '2022-12-03 22:17:49', '2022-12-03 22:17:49'),
+(2, 'G002', 'Kabel Fiber Optik Bending', '<ol><li>Saat Melakukan IKR dilarang membelokan kabel secara belokan patah atau berbentuk hurup L</li><li>Tidak di gulung dengan sembarangan usahakan berbentuk Huruf O atau angka 8</li><li>Menutup di Optikal Distribution Point (ODP) dengan hati-hati</li><li>Usakan saat instalasi kabel lurus</li><li>Saat instalasi hindari belakang lemari atau pintu keluar masuk. </li><li>Gunakan Sambungan konektor yang bersih tidak kotor samasekali keramiknya</li><li>Jangan instalasi melalui jendela rawan terjepit<br></li></ol>', '2022-12-03 22:18:33', '2022-12-03 22:18:33'),
+(3, 'G003', 'Kabel Fiber Optik Sambungan Nitik,Bubble', '<ol><li>Saat melakukan penyambungan menggunakan splasan usahakan di lap oleh tisu dan alkohol</li><li>Mengunakan splasan yang baik dan sejajar A dan B nya agarr core tersambung dengan cepat</li><li>Gunakan protecsion yang setandar</li><li>Bersihkan rutin papan elektro roda di splasan</li><li>Gunakan Fiber stripper dan core cleaver yang bagus<br></li></ol>', '2022-12-03 22:19:01', '2022-12-03 22:19:01'),
+(4, 'G004', 'Kabel Fiber Optik Pecah Konektor SC', '<ol><li>lindungi konektor saat melakukan instalasi</li><li>Jangan sampai terbentur ke aspal</li><li>Dilarang terlalu keras saat pencolokan core ke odpnya<br></li></ol>', '2022-12-03 22:19:28', '2022-12-03 22:19:28');
 
 -- --------------------------------------------------------
 
@@ -213,7 +217,7 @@ CREATE TABLE `tbl_status` (
   `id_status` int NOT NULL,
   `status` varchar(50) NOT NULL,
   `status_keterangan` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_status`
@@ -236,7 +240,7 @@ CREATE TABLE `tbl_status_pelanggan` (
   `pelanggan_id` int NOT NULL,
   `status_id` int NOT NULL,
   `keterangan` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_status_pelanggan`
@@ -266,7 +270,7 @@ CREATE TABLE `tbl_users` (
   `bio` longtext,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_users`
@@ -357,7 +361,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_gejala`
 --
 ALTER TABLE `tbl_gejala`
-  MODIFY `id_gejala` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_gejala` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_modem`
@@ -381,7 +385,7 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT for table `tbl_riwayat`
 --
 ALTER TABLE `tbl_riwayat`
-  MODIFY `id_riwayat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_riwayat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_rules`
@@ -393,7 +397,7 @@ ALTER TABLE `tbl_rules`
 -- AUTO_INCREMENT for table `tbl_solusi`
 --
 ALTER TABLE `tbl_solusi`
-  MODIFY `id_solusi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_solusi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

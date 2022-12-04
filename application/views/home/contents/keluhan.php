@@ -107,6 +107,7 @@
 						<!-- step 3 -->
 						<fieldset>
 							<h4>Keluhan Pelanggan</h4>
+							<p class="text-danger text-center">*Note: Jika tidak diisi akan otomatis terjawab <b>Tidak</b></p>
 							<?php $no = 0;
 							foreach ($getGejala as $gejala) : ?>
 								<div class="form-group text-center">

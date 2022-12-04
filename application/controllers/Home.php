@@ -62,6 +62,7 @@ class Home extends CI_Controller
 				'getSolusi' => $this->riwayat_m->getForwardChaining($kode_riwayat),
 				'getJawaban' => $this->riwayat_m->getJawaban($kode_riwayat),
 				'getFalseGejala' => $this->gejala_m->getFalseGejala($kode_riwayat),
+				'getRiwayat' => $this->riwayat_m->getRiwayatRelation($kode_riwayat)
 			];
 			if ($data['getSolusi'] != "Kode solusi tidak ditemukan") {
 				$dataUpdate = [
@@ -70,7 +71,7 @@ class Home extends CI_Controller
 				];
 				$this->riwayat_m->updateRiwayat($dataUpdate);
 			}
-			// $this->session->unset_userdata('kode_riwayat');
+			$this->session->unset_userdata('kode_riwayat');
 			$this->load->view('home/layouts/app', $data);
 		} else {
 			$this->session->set_flashdata('error', 'Sesi anda berakhir atau anda belum mengisi form pengaduan/keluhan');
