@@ -89,7 +89,7 @@ INSERT INTO `tbl_modem` (`id_modem`, `kode_modem`, `type_modem`, `modem`, `creat
 CREATE TABLE `tbl_paket` (
   `id_paket` int NOT NULL,
   `paket` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_paket`
@@ -118,7 +118,7 @@ CREATE TABLE `tbl_pelanggan` (
   `photo_selfie` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pelanggan`
@@ -217,7 +217,7 @@ CREATE TABLE `tbl_status` (
   `id_status` int NOT NULL,
   `status` varchar(50) NOT NULL,
   `status_keterangan` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_status`
@@ -240,7 +240,7 @@ CREATE TABLE `tbl_status_pelanggan` (
   `pelanggan_id` int NOT NULL,
   `status_id` int NOT NULL,
   `keterangan` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_status_pelanggan`
@@ -270,7 +270,7 @@ CREATE TABLE `tbl_users` (
   `bio` longtext,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_users`

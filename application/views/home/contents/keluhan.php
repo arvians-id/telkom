@@ -214,7 +214,10 @@
 						</tr>`
 			}
 			if (str == "") {
-				str = "Anda tidak mengeluhkan apapun disini! Silahkan kembali lagi."
+				str = "Anda tidak mengeluhkan apapun disini! Silahkan kembali lagi. Setidaknya terdapat 1 keluhan yang anda keluhkan."
+				$('.btn-submit').hide()
+			} else {
+				$('.btn-submit').show()
 			}
 			$('#penyesuaian-keluhan').html(str)
 		})
