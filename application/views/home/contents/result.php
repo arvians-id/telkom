@@ -30,9 +30,9 @@
 				<div class="collapse show" id="hasil-collapse">
 					<div class="card-body text-center">
 						<?php if ($getSolusi != "Kode solusi tidak ditemukan") : ?>
-							<p>Adapun solusinya, sebagai berikut.</p>
-							<h5><?= $getSolusi['judul'] ?></h5>
-							<h6><?= $getSolusi['solusi'] ?></h6>
+							<h4>Adapun solusinya, sebagai berikut.</h4>
+							<h5><?= $getSolusi['kode_solusi'] . " - " . $getSolusi['judul'] ?></h5>
+							<p class="text-left"><?= $getSolusi['solusi'] ?></p>
 						<?php else : ?>
 							<p>Maaf, solusi tidak ditemukan.</p>
 						<?php endif; ?>

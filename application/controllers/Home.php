@@ -71,7 +71,7 @@ class Home extends CI_Controller
 				];
 				$this->riwayat_m->updateRiwayat($dataUpdate);
 			}
-			$this->session->unset_userdata('kode_riwayat');
+			// $this->session->unset_userdata('kode_riwayat');
 			$this->load->view('home/layouts/app', $data);
 		} else {
 			$this->session->set_flashdata('error', 'Sesi anda berakhir atau anda belum mengisi form pengaduan/keluhan');
